@@ -1,0 +1,144 @@
+@import ('../../../libs/css/params.styl');
+
+:host {
+  .card-parent {
+    width: 26vw;
+    height: 15.5vw;
+    margin: 0 3.65vw 3.65vw 0;
+    // margin-bottom: 3.65vw;
+    background: white;
+    bsh();
+    transition: box-shadow 0.3s $InOutCubic;
+    cursor: pointer;
+
+    &:hover {
+      bshHover();
+    }
+
+    &.big {
+      height: 31vw;
+
+      .content-wrap {
+        height: 45%;
+      }
+    }
+
+    .img-wrap {
+      width: 100%;
+      height: 55%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .content-wrap {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .inner-cont {
+        width: calc(100% - 3.125vw);
+        height: calc(100% - 2.1vw);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        .text-cont {
+          width: 100%;
+          max-height: calc(100% - 2.35vw - 1.15vw);
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+
+          .title {
+            width: 100%;
+            font-weight: 300;
+            color: $gray;
+            fzd(28);
+            lhd(34);
+          }
+
+          .hashtags {
+            width: 100%;
+            color: $light-blue;
+            fzd(18);
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            overflow: hidden;
+
+            .hashtag {
+              margin-right: 1.05vw;
+              white-space: nowrap;
+            }
+          }
+        }
+
+        .data-cont {
+          width: 100%;
+          height: calc(2.35vw - 1.25vw);
+          padding-top: 1.25vw;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-top: 2px solid $light-gray;
+          fzd(18);
+
+          .date {
+            text-transform: uppercase;
+            color: #dcdcdc;
+          }
+
+          .activity {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            .text {
+              color: $gray;
+              margin-left: 0.5vw;
+            }
+
+            .svg-cont {
+              width: 1vw;
+              height: 1vw;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              svg {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                overflow: visible;
+              }
+            }
+
+            .comments, .likes {
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
+              margin-left: 1.4vw;
+
+              .svg-cont {
+                color: $light-gray;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

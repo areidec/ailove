@@ -1,0 +1,330 @@
+@import ('../../../../libs/css/params.styl');
+
+:host {
+  width: 35vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  position: absolute;
+  overflow: scroll;
+  right: 0;
+  scrollbar-width: none;
+  -ms-scrollbar-arrow-color: transparent;
+  -ms-scrollbar-base-color: transparent;
+  -ms-scrollbar-face-color: transparent;
+  -ms-scrollbar-track-color: transparent;
+
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    height: 0px;
+    opacity: 0;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-appearance: none;
+    height: 1px;
+    opacity: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    -webkit-appearance: none;
+    height: 1px;
+    opacity: 0;
+  }
+
+  .user-course-parent {
+    width: 100%;
+    padding-top: 2.5vw;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    top: 0;
+
+    .profile {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 12.5vw;
+
+      .portrait {
+        width: 6vw;
+        height: 6vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid rgba(#88CA60, 0.3);
+        border-radius: 50%;
+
+        .inner-img {
+          width: 5vw;
+          height: 5vw;
+          border-radius: 50%;
+          overflow: hidden;
+
+          img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+
+      .name {
+        margin-top: 1vw;
+        fzd(16);
+        color: #212121;
+        lhd(21);
+        font-weight: 500;
+      }
+    }
+
+    .confirm-email-wrap {
+      display: flex;
+      flex-direction: column;
+      width: 70%;
+      justify-content: center;
+      align-items: center;
+
+      .confirm-text {
+        text-align: center;
+        color: #4B5A6B;
+      }
+    }
+
+    .header {
+      fzd(18);
+      font-weight: 700;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 1vw 0;
+      width: 80%;
+
+      &.module {
+        color: #88CA60;
+      }
+
+      &.extra {
+        color: #F37B47;
+      }
+
+      &.test {
+        color: #FFD144;
+      }
+    }
+
+    .modules {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      list-style-type: none;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      padding-inline-start: 0;
+
+      .module-wrap {
+        height: auto;
+        position: relative;
+        border-top: 1px solid #e7e7e7;
+        overflow: hidden;
+        transition: height 0.45s $OutCubic;
+        transform: translateZ(0) perspective(1px);
+
+        &:nth-last-of-type(1) {
+          border-bottom: 1px solid #e7e7e7;
+        }
+
+        &.active {
+          .top {
+            .arrow {
+              svg {
+                will-change: transform;
+                transition: transform 0.35s $OutCubic;
+                transform: rotate(180deg);
+              }
+            }
+          }
+        }
+
+        .top {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-start;
+          background-color: #fff;
+          height: 2.6vw;
+          cursor: pointer;
+          user-select: none;
+          color: #415061;
+
+          &.disabled {
+            pointer-events: none;
+
+            .header {
+              opacity: 0.3;
+            }
+          }
+
+          // border-bottom: 1px solid #e7e7e7;
+          .header {
+            font-weight: 700;
+            fzd(16);
+            width: 75%;
+          }
+
+          .duration {
+            fzd(16);
+            font-weight: 400;
+            text-align: right;
+            width: 15%;
+
+            svg {
+              width: 12.5%;
+            }
+          }
+
+          .arrow {
+            width: 10%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            svg {
+              will-change: transform;
+              transition: transform 0.35s $OutCubic;
+              transform: rotate(0deg);
+              width: 30%;
+            }
+          }
+        }
+
+        .about {
+          overflow: hidden;
+          box-sizing: border-box;
+          fzd(14);
+          lhd(20);
+          color: #9A9D9F;
+          display: flex;
+          flex-direction: column;
+
+          .lesson-item {
+            // height: 2.6vw;
+            padding: 1vw 0 0 0;
+            display: flex;
+            width: 100%;
+            flex-direction: row;
+            justify-content: flex-end;
+            color: #415061;
+
+            .lesson {
+              &-header, &-icon, &-duration {
+                padding-bottom: 1vw;
+                border-bottom: 1px solid #e7e7e7;
+              }
+            }
+
+            &:nth-last-of-type(1) {
+              * {
+                border-bottom: 0;
+              }
+            }
+
+            .lesson-progress {
+              width: 7.5%;
+              display: flex;
+              justify-content: flex-start;
+              align-items: flex-start;
+
+              svg {
+                width: 50%;
+                transform: rotate(90deg);
+              }
+            }
+
+            .lesson-header {
+              // display: block;
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              width: 62.5%;
+              fzd(14);
+              // line-height: 2.6vw;
+              font-weight: 400;
+              // text-overflow: ellipsis;
+              // overflow: hidden;
+              // white-space: nowrap;
+            }
+
+            .lesson-icon {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 7.5%;
+
+              svg {
+                width: 50%;
+              }
+            }
+
+            .lesson-duration {
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
+              width: 12.5%;
+              color: rgba(#415061, 0.3);
+              fzd(14);
+              lhd(19);
+            }
+          }
+        }
+      }
+    }
+
+    .buttons {
+      margin-top: 2.1vw;
+      transform: translateZ(0) perspective(1px);
+      margin-bottom: 2.1vw;
+
+      button {
+        width: 14vw;
+        height: 2.7vw;
+        // text-transform: uppercase;
+        fzd(16);
+        font-weight: 700;
+        border-radius: 1.35vw;
+        color: white;
+      }
+    }
+
+    .bot-content {
+      opacity: 0.3;
+      position: relative;
+      margin-top: 1vw;
+      margin-bottom: 1.5vw;
+      height: 2.1vw;
+      display: flex;
+      width: 12vw;
+      justify-content: space-between;
+      align-items: center;
+
+      img {
+        height: 70%;
+        max-width: 45%;
+        object-fit: contain;
+      }
+
+      .shape {
+        height: 100%;
+        width: 1px;
+        background-color: #202020;
+      }
+    }
+  }
+}

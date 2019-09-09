@@ -1,0 +1,63 @@
+@import ('../../../libs/css/params.styl');
+
+:host {
+  background-color: #F8F8F8;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #415061;
+  border-top: 1px solid $light-gray;
+  padding-bottom: 1vw;
+  font-weight: 400;
+
+  .footer-parent {
+    width: 90%;
+
+    .footer-inner {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .footer-header {
+        margin: 1vw 0;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        fzd(14);
+        lhd(20);
+
+        .logos {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          width: 20%;
+
+          img {
+            width: 45%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+      }
+
+      .footer-content {
+        fzd(14);
+        lhd(20);
+        color: #C6CACF;
+        width: 100%;
+
+        .adress-bot {
+          display: flex;
+          flex-direction: row;
+          margin: 1vw 0;
+        }
+      }
+    }
+  }
+}

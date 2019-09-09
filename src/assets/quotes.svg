@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="36px" viewBox="0 0 50 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>quotes</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="22_article_not-registered-user" transform="translate(-1130.000000, -2546.000000)" fill="#FCC624">
+            <g id="Article_body" transform="translate(170.000000, 629.000000)">
+                <g id="quote" transform="translate(0.000000, 1917.000000)">
+                    <g id="quotes" transform="translate(960.000000, 0.000000)">
+                        <path d="M40.5483903,27.5964814 C40.5483903,30.5310586 39.9277308,33.3530891 38.7802348,36 C45.4586345,31.4177737 49.6960837,24.8765157 49.8706959,17.5978284 L50,17.4489661 L50,0 L28,0 L28,22.5840791 L39.9309375,22.5840791 C40.3349869,24.2084354 40.5483903,25.8826595 40.5483903,27.5964814 Z" id="Path"></path>
+                        <path d="M12.0215538,22.5035078 C12.4482572,24.1616233 12.6712809,25.8729098 12.6712809,27.6230197 C12.6712809,30.5473247 12.0474146,33.3625446 10.8999187,36 C17.6653141,31.3747472 21.9257277,24.7516748 21.9967933,17.3867389 L22,17.3867389 L22,17.2976984 C22,17.261407 22,17.2284916 22,17.1922002 C22,17.1559088 22,17.1196174 22,17.0834315 L22,0 L0,0 L0,22.5034023 L12.0215538,22.5034023 L12.0215538,22.5035078 Z" id="Path"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

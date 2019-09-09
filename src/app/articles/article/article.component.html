@@ -1,0 +1,165 @@
+<div [@slideInBottom]>
+  <div class="article-parent z-index-comp" [ngClass]="defineCssState()">
+    <div class="article-wrap">
+      <div class="article-image opacity-comp">
+        <img [src]="currentArticle?.poster_image" alt="" />
+      </div>
+      <div class="article-content slide-in-comp">
+        <mat-card class="article-main">
+          <h1>{{ currentArticle?.title }}</h1>
+
+          <div class="tags">
+            <div class="tag" *ngFor="let tag of currentArticle?.tags">#{{ tag.text }}</div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="header-bottom">
+            <div class="date">
+              {{ formatDate(currentArticle?.created_at) }}
+            </div>
+            <div class="comments-likes">
+              <div class="comments">
+                <svg viewBox="0 0 18 18" version="1.1">
+                  <g
+                    id="Desktop"
+                    stroke="none"
+                    stroke-width="1"
+                    fill="none"
+                    fill-rule="evenodd"
+                    opacity="0.2"
+                  >
+                    <g
+                      id="22_article_not-registered-user"
+                      transform="translate(-1039.000000, -1010.000000)"
+                      fill="#415061"
+                      fill-rule="nonzero"
+                    >
+                      <g id="Article_body" transform="translate(170.000000, 629.000000)">
+                        <g id="Group-4" transform="translate(70.000000, 318.000000)">
+                          <g id="Group-2" transform="translate(0.000000, 60.000000)">
+                            <g id="Group-3" transform="translate(799.000000, 0.000000)">
+                              <path
+                                d="M14.4878049,3 L3.51219512,3 C1.57246332,3 0,4.58172116 0,6.53287309 L0,13.5986193 C0,15.5497712 1.57246332,17.1314924 3.51219512,17.1314924 L7.10341463,17.1314924 L10.6485366,20.6467011 C10.8701337,20.8707342 11.1707043,20.9977013 11.484878,21 C11.6585796,21.000806 11.8297769,20.9583237 11.9831707,20.8763379 C12.3483796,20.6807636 12.5580275,20.280875 12.5121951,19.867261 L12.4397561,17.1314924 L14.4878049,17.1314924 C16.4275367,17.1314924 18,15.5497712 18,13.5986193 L18,6.53287309 C18,4.58172116 16.4275367,3 14.4878049,3 Z M16.2439024,13.5986193 C16.2439024,14.0671074 16.0588855,14.5164074 15.7295534,14.8476785 C15.4002212,15.1789497 14.9535509,15.3650558 14.4878049,15.3650558 L11.5331707,15.3650558 C11.2960531,15.3649656 11.0689792,15.4613454 10.9036011,15.6322719 C10.7382229,15.8031984 10.6486012,16.0341391 10.655122,16.2725626 L10.7056098,18.224475 L8.07146341,15.6211891 C7.90954421,15.459615 7.6914763,15.3677565 7.46341463,15.3650558 L3.51219512,15.3650558 C2.54232922,15.3650558 1.75609756,14.5741953 1.75609756,13.5986193 L1.75609756,6.53287309 C1.75609756,5.55729713 2.54232922,4.76643655 3.51219512,4.76643655 L14.4878049,4.76643655 C15.4576708,4.76643655 16.2439024,5.55729713 16.2439024,6.53287309 L16.2439024,13.5986193 Z"
+                                id="Shape"
+                                transform="translate(9.000000, 12.000000) scale(-1, 1) translate(-9.000000, -12.000000) "
+                              ></path>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+                {{ currentArticle?.comments.length }}
+              </div>
+              <div class="likes">
+                <svg viewBox="0 0 18 16" version="1.1">
+                  <g
+                    id="Desktop"
+                    stroke="none"
+                    stroke-width="1"
+                    fill="none"
+                    fill-rule="evenodd"
+                    opacity="0.2"
+                  >
+                    <g
+                      id="22_article_not-registered-user"
+                      transform="translate(-1112.000000, -1010.000000)"
+                      fill="#415061"
+                      fill-rule="nonzero"
+                    >
+                      <g id="Article_body" transform="translate(170.000000, 629.000000)">
+                        <g id="Group-4" transform="translate(70.000000, 318.000000)">
+                          <g id="Group-2" transform="translate(0.000000, 60.000000)">
+                            <g id="Group" transform="translate(872.000000, 0.000000)">
+                              <path
+                                d="M9.9021717,3.5533685 C10.7774107,3.13710641 11.5409105,3 12.7253707,3 C15.7565041,3.01220966 18,5.49613468 18,8.66020671 C18,11.0752775 16.6141378,13.4081887 14.0327674,15.6640514 C12.6778141,16.8481467 10.9478275,18.0199404 9.70887027,18.6433283 L9,19 L8.29112973,18.6433283 C7.05217246,18.0199404 5.32218595,16.8481467 3.9672326,15.6640514 C1.38586221,13.4081887 0,11.0752775 0,8.66020671 C0,5.46228596 2.22253893,3 5.28099173,3 C6.42295575,3 7.2256242,3.15007383 8.1178452,3.57885686 C8.42848257,3.72814279 8.72033891,3.90522062 8.99179437,4.10961099 C9.27412388,3.89308189 9.57812932,3.70748247 9.9021717,3.5533685 Z M12.7440081,14.3063967 C14.9003606,12.4213606 16,10.5696802 16,8.77045998 C16,6.55478552 14.5130497,4.90796128 12.538176,4.9 C11.6343378,4.9 11.1356779,4.9895768 10.5414961,5.27225808 C10.1760079,5.44613871 9.85174833,5.68087754 9.56890571,5.97918102 L9.00181821,6.57726691 L8.42952427,5.9838845 C8.15290332,5.69707028 7.83333777,5.4675568 7.47177151,5.29374044 C6.85965429,4.99947631 6.32777468,4.9 5.46464646,4.9 C3.46505432,4.9 2,6.52360511 2,8.77045998 C2,10.5696802 3.09963943,12.4213606 5.25599192,14.3063967 C6.43163722,15.33412 7.94302979,16.3611739 9,16.9 C10.0569702,16.3611739 11.5683628,15.33412 12.7440081,14.3063967 Z"
+                                id="Shape"
+                              ></path>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g></svg
+                >{{ currentArticle?.number_of_likes }}
+              </div>
+            </div>
+          </div>
+          <div class="author-block" *ngIf="currentArticle?.author">
+            <div class="author">
+              <div class="portrait">
+                <div class="inner-img">
+                  <img [src]="currentArticle?.author.image" alt="" />
+                </div>
+              </div>
+              <div class="about">{{ currentArticle?.author.name }}</div>
+            </div>
+            <div class="divider">
+              <div class="inner"></div>
+            </div>
+            <div class="description">
+              <div class="text">
+                {{ currentArticle?.description }}
+              </div>
+              <div class="inner"></div>
+            </div>
+          </div>
+          <div class="main-block" [innerHTML]="currentArticle?.content"></div>
+          <div class="course-end">
+            <button mat-flat-button color="primary" class="button">Понравилась статья</button>
+          </div>
+          <mat-divider></mat-divider>
+          <app-comments [comments]="currentArticle?.comments"></app-comments>
+        </mat-card>
+        <mat-card
+          class="article-right"
+          [ngStyle]="{
+            backgroundColor: relatedCourseBg().backgroundColor,
+            color: relatedCourseBg().color
+          }"
+        >
+          <div class="course-wrap">
+            <div class="course-play">
+              <svg viewBox="0 0 122 122" version="1.1">
+                <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g
+                    id="22_article_not-registered-user"
+                    transform="translate(-1519.000000, -973.000000)"
+                    stroke="#FFFFFF"
+                  >
+                    <g id="cours_banner" transform="translate(1330.000000, 913.000000)">
+                      <g id="Group-4" transform="translate(190.000000, 61.000000)">
+                        <circle
+                          id="Oval"
+                          stroke-width="1.5"
+                          opacity="0.400000006"
+                          cx="60"
+                          cy="60"
+                          r="60"
+                        ></circle>
+                        <polygon
+                          id="Polygon"
+                          stroke-width="2"
+                          transform="translate(64.520508, 60.000000) rotate(90.000000) translate(-64.520508, -60.000000) "
+                          points="64.5205081 42.6794919 84.5205081 77.3205081 44.5205081 77.3205081"
+                        ></polygon>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="course-header">
+              {{ relatedCourseBg().name }}
+            </div>
+            <div class="course-about">
+              {{ relatedCourseBg().about }}
+            </div>
+            <button mat-stroked-button class="button">Начать обучение</button>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>

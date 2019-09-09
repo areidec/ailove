@@ -1,0 +1,133 @@
+@import ('../../../libs/css/params.styl');
+
+:host {
+  background-color: #F8F8F8;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #415061;
+
+  .faq-parent {
+    width: 90%;
+
+    .faq-inner {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .faq-header {
+        margin-top: 3vw;
+        padding-bottom: 1vw;
+        width: 100%;
+        border-bottom: 2px solid #212121;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .header {
+          fzd(50);
+          lhd(56);
+          letter-spacing: -0.05vw;
+          text-transform: uppercase;
+          letter-spacing: -0.05vw;
+          font-weight: 900;
+        }
+
+        .ask-question {
+          cursor: pointer;
+          opacity: 0.75;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+
+      .questions {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        list-style-type: none;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        padding-inline-start: 0;
+        margin-bottom: 4vw;
+
+        .question-wrap {
+          height: auto;
+          position: relative;
+          border-top: 2px solid #e7e7e7;
+          overflow: hidden;
+          transition: height 0.45s $OutCubic;
+          transform: translateZ(0) perspective(1px);
+
+          &:nth-last-of-type(1) {
+            border-bottom: 2px solid #e7e7e7;
+          }
+
+          &.active {
+            .top {
+              .arrow {
+                svg {
+                  will-change: transform;
+                  transition: transform 0.35s $OutCubic;
+                  transform: rotate(135deg);
+                }
+              }
+            }
+          }
+
+          .top {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: flex-start;
+            height: 4vw;
+            cursor: pointer;
+            user-select: none;
+
+            .header {
+              fzd(28);
+              lhd(34);
+              font-weight: 300;
+              width: 90%;
+            }
+
+            .arrow {
+              width: 10%;
+              display: flex;
+              justify-content: flex-end;
+              align-items: flex-start;
+
+              svg {
+                will-change: transform;
+                transition: transform 0.35s $OutCubic;
+                transform: rotate(0deg);
+                width: 1vw;
+              }
+            }
+          }
+
+          .about {
+            overflow: hidden;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 0 10% 0 5%;
+            margin-top: 1vw;
+            margin-bottom: 1.25vw;
+            fzd(22);
+            lhd(30);
+            color: #9A9D9F;
+            font-weight: 300;
+            // transition: margin 0.45s $OutCubic;
+          }
+        }
+      }
+    }
+  }
+}

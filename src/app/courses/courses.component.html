@@ -1,0 +1,17 @@
+<div class="courses-parent">
+  <app-top-part [ngClass]="defineCssState()"></app-top-part>
+  <div class="left-side" *ngIf="currentState?.id === 1">
+    <app-teachers></app-teachers>
+    <app-faq></app-faq>
+    <app-footer></app-footer>
+  </div>
+</div>
+
+<div class="button" (click)="buttonClick()">
+  <div
+    class="inner-arrow"
+    [ngClass]="{ 'to-right': currentState?.id !== 1, 'to-left': currentState?.id === 1 }"
+  >
+    <span class="line first"></span><span class="line second"></span>
+  </div>
+</div>

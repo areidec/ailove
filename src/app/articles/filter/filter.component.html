@@ -1,0 +1,50 @@
+<div class="filter-parent" [ngClass]="defineCssState()">
+  <div class="filters-list" #filterList *ngIf="searchTags.length === 0 && !hasKeyword()">
+    <!-- <span *ngFor="let filter of filters; let i = index" (filter)="filter" (click)="setFilter(filter)" class="filter-item" [ngClass]="defineActiveFilter(filter)" [ngStyle]="{transform: 'translateX(' + translate + 'px)'}" -->
+    <span
+      *ngFor="let filter of filters; let i = index"
+      (filter)="(filter)"
+      (click)="setFilter(filter)"
+      class="filter-item"
+      [ngClass]="defineActiveFilter(filter)"
+      >{{ filter }}</span
+    >
+  </div>
+  <div class="filters-list" *ngIf="searchTags.length > 0 || hasKeyword()">
+    <span (filter)="(searchCategory)" class="filter-item active">{{ searchCategory }}</span>
+  </div>
+  <button class="search-btn" mat-flat-button color="basic" (click)="toggleSearch(true)">
+    <!-- <div class="search-icon">
+      <img src="../../../assets/articles/filter/search.svg" alt="" />
+    </div> -->
+    <mat-icon class="search-icon">search</mat-icon>
+  </button>
+  <div class="search-tags-wrap" *ngIf="searchTags.length > 0 || hasKeyword()">
+    <mat-chip-list class="tab-content">
+      <mat-chip
+        class="tag"
+        *ngIf="hasKeyword()"
+        (click)="removeKeyWord()"
+        [selectable]="false"
+        [removable]="true"
+      >
+        {{ '#' + keyword }}
+        <mat-icon class="mat-icon" (click)="removeKeyWord()" matChipRemove>cancel</mat-icon>
+      </mat-chip>
+      <mat-chip
+        class="tag active"
+        *ngFor="let tag of searchTags"
+        (click)="removeTag(tag)"
+        [selectable]="false"
+        [removable]="true"
+      >
+        {{ '#' + tag.text }}
+        <mat-icon class="mat-icon" (click)="removeTag(tag)" matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+    <button mat-button color="basic" (click)="resetSearch()">
+      Очистить фильтр
+    </button>
+  </div>
+  <app-articles-search *ngIf="showSearch" [@slideInTop]></app-articles-search>
+</div>

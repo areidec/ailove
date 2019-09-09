@@ -1,0 +1,9 @@
+<div class="card-parent" [ngStyle]="cardStyle()">
+  <div class="number">{{ index + 1 }}.</div>
+  <h3 class="header" [innerHTML]="card.name"></h3>
+  <div class="about" [innerHTML]="card.about"></div>
+  <div class="buttons">
+    <div class="choose">выбрать</div>
+    <div class="programm">программа курса</div>
+  </div>
+</div>

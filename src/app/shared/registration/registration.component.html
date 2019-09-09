@@ -1,0 +1,157 @@
+<div class="registration-wrap z-index-comp">
+  <div class="inner-cont">
+    <div class="close-helper" (click)="toggleRegistration(false)"></div>
+    <div class="registration-form-wrap slide-in-comp">
+      <!-- <div class="registration-form-wrap"> -->
+      <!-- <div class="close-shape-wrap" (click)="toggleRegistration(false)">
+        <div class="shape"></div>
+      </div> -->
+      <div class="registration-header">
+        <div class="title">Регистрация</div>
+      </div>
+      <div class="registration-content">
+        <form [formGroup]="userDataForm" #formDir="ngForm" class="form-wrap">
+          <div class="input-wrap" *ngFor="let input of inputs" [ngClass]="getBigClass(input.name)">
+            <!-- default text input -->
+            <mat-form-field
+              class="example-full-width"
+              [ngStyle]="{ width: '100%' }"
+              *ngIf="input.type === 'text' || input.type === 'email'"
+            >
+              <input
+                matInput
+                [placeholder]="input.placeholder"
+                [formControlName]="input.name"
+                (input)="handleInput(input.name)"
+              />
+              <mat-error class="error" *ngIf="getField(input.name).hasError('required')">
+                Это поле обязательно для заполнения
+              </mat-error>
+              <mat-error
+                class="error"
+                *ngIf="
+                  !getField(input.name).hasError('required') &&
+                  getField(input.name).hasError('email')
+                "
+              >
+                Неправильный формат email адреса
+              </mat-error>
+            </mat-form-field>
+            <!-- Password input -->
+            <mat-form-field
+              class="example-full-width"
+              [ngStyle]="{ width: '100%' }"
+              *ngIf="input.type === 'password'"
+            >
+              <input
+                matInput
+                [placeholder]="input.placeholder"
+                [formControlName]="input.name"
+                [type]="getHide(input.name) ? 'password' : 'text'"
+                (input)="handleInput(input.name)"
+              />
+              <mat-error class="error" *ngIf="getField(input.name).hasError('required')">
+                Это поле обязательно для заполнения
+              </mat-error>
+              <mat-error class="error" *ngIf="getField(input.name).hasError('minLength')">
+                Минимальная длина пароля 6 символов
+              </mat-error>
+              <mat-error class="error" *ngIf="getField(input.name).hasError('notEqual')">
+                Пароли не совпадают
+              </mat-error>
+            </mat-form-field>
+            <!-- Phone input -->
+            <mat-form-field
+              class="example-full-width"
+              [ngStyle]="{ width: '100%' }"
+              *ngIf="input.type === 'tel'"
+            >
+              <input
+                matInput
+                [placeholder]="input.placeholder"
+                [formControlName]="input.name"
+                mask="(000) 000-0000"
+                prefix="+7"
+                [showMaskTyped]="true"
+                (input)="handleInput(input.name)"
+              />
+              <mat-error class="error" *ngIf="getField(input.name).hasError('required')">
+                Это поле обязательно для заполнения
+              </mat-error>
+            </mat-form-field>
+            <!-- radio buttons -->
+            <mat-radio-group
+              *ngIf="input.type === 'radio'"
+              [formControlName]="input.name"
+              class="example-radio-group"
+            >
+              <mat-label [innerHTML]="input.placeholder"></mat-label>
+              <mat-radio-button
+                class="example-radio-button"
+                *ngFor="let item of input.values; let index = index"
+                [value]="item.value"
+                >{{ item.name }}</mat-radio-button
+              >
+            </mat-radio-group>
+            <!-- Datepicker -->
+            <mat-form-field [ngStyle]="{ width: '100%' }" *ngIf="input.type === 'datepicker'">
+              <input
+                matInput
+                [matDatepicker]="date"
+                [placeholder]="input.placeholder"
+                [formControlName]="input.name"
+                [max]="maxDate"
+                (input)="handleInput(input.name)"
+                readonly
+              />
+              <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+              <mat-datepicker #date disabled="false"></mat-datepicker>
+              <mat-error class="error" *ngIf="getField(input.name).hasError('required')">
+                Это поле обязательно для заполнения
+              </mat-error>
+            </mat-form-field>
+            <!-- Select -->
+            <mat-form-field [ngStyle]="{ width: '100%' }" *ngIf="input.type === 'select'">
+              <mat-label>{{ input.placeholder }}</mat-label>
+              <mat-select
+                [formControlName]="input.name"
+                (selectionChange)="handleInput(input.name)"
+              >
+                <mat-option *ngFor="let item of input.values" [value]="item.value">
+                  {{ item.name }}
+                </mat-option>
+              </mat-select>
+              <mat-error class="error" *ngIf="getField(input.name).hasError('required')">
+                Это поле обязательно для заполнения
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <!-- Checkboxes -->
+          <div class="input-wrap big cb">
+            <mat-checkbox (input)="rules = !rules"
+              >Я&nbsp;согласен с&nbsp;правилами участия</mat-checkbox
+            >
+          </div>
+          <div class="input-wrap big cb">
+            <mat-checkbox (input)="personal = !personal"
+              >Я&nbsp;согласен с&nbsp;политикой обработки персональных данных</mat-checkbox
+            >
+          </div>
+          <div [ngStyle]="{ width: '100%' }" *ngIf="globalErrors.length > 0">
+            <mat-error class="error" *ngFor="let item of globalErrors">
+              {{ item }}
+            </mat-error>
+          </div>
+          <button
+            [disabled]="!(rules && personal)"
+            mat-flat-button
+            color="accent"
+            (click)="validateForm()"
+          >
+            Зарегистрироваться
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

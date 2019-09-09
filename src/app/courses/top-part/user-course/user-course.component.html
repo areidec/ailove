@@ -1,0 +1,268 @@
+<div class="user-course-parent">
+  <div class="profile">
+    <div class="portrait">
+      <div class="inner-img">
+        <img
+          [src]="
+            userInfo.avatar
+              ? 'https://business-class.pro' + userInfo.avatar
+              : '../../../../assets/default_avatar.png'
+          "
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="name">{{ userInfo.firstName }} {{ userInfo.lastName }}</div>
+  </div>
+  <div class="confirm-email-wrap" *ngIf="!userInfo.emailVerified">
+    <div class="confirm-text">
+      Чтобы открыть материалы курса, завершите регистрацию, перейдя по&nbsp;ссылке, которую
+      мы&nbsp;отправили на&nbsp;{{ userInfo.email }}.
+      <br />
+      <br />
+      Если вы&nbsp;не&nbsp;получили письмо, пожалуйста, проверьте папку &laquo;Спам&raquo;. Также
+      вы&nbsp;можете отправить письмо повторно или написать нам в&nbsp;случае возникновения
+      трудностей.
+    </div>
+    <div class="buttons">
+      <!-- <div class="start" [ngStyle]="{ backgroundColor: '#88CA60' }">Отправить еще раз</div> -->
+      <button mat-flat-button color="accent" (click)="disabled = !disabled" [disabled]="disabled">
+        Отправить еще раз
+      </button>
+    </div>
+  </div>
+  <ng-container *ngFor="let name of ['base', 'extra']">
+    <div class="header" [ngClass]="{ module: name === 'base', extra: name === 'extra' }">
+      {{ name === 'base' ? courseCard.name : 'Дополнительно' }}
+    </div>
+    <ul class="modules">
+      <li
+        class="module-wrap"
+        *ngFor="
+          let module of name === 'base' ? courseCard.modules : courseCard.extraModules;
+          let ind = index
+        "
+        [ngClass]="{ active: ind === this.activeLi && this.activeBlock === name }"
+        [ngStyle]="{
+          height: ind === this.activeLi && this.activeBlock === name ? finHeight : '2.6vw'
+        }"
+      >
+        <div
+          class="top"
+          [ngClass]="{ disabled: !userInfo.emailVerified }"
+          (click)="expand(ind, about, name, module.id)"
+        >
+          <div class="arrow">
+            <svg
+              width="12px"
+              height="8px"
+              viewBox="0 0 12 8"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <g
+                stroke="none"
+                stroke-width="1"
+                fill="none"
+                fill-rule="evenodd"
+                opacity="0.200000003"
+              >
+                <g transform="translate(-69.000000, -497.000000)" fill="#415061">
+                  <g transform="translate(0.000000, -7.000000)">
+                    <g transform="translate(69.000000, 317.000000)">
+                      <polygon
+                        transform="translate(6.000000, 190.700000) scale(1, -1) translate(-6.000000, -190.700000) "
+                        points="10.6 187 6 191.6 1.4 187 0 188.4 6 194.4 12 188.4"
+                      ></polygon>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="header">{{ module.name }}</div>
+          <div class="count" *ngIf="userInfo.emailVerified">
+            {{ module.completed }}/{{ module.count }}
+          </div>
+          <div class="duration">
+            <ng-container *ngIf="userInfo.emailVerified"> {{ module.duration }} мин. </ng-container>
+            <svg viewBox="0 0 11 14" version="1.1" *ngIf="!userInfo.emailVerified">
+              <g
+                id="Desktop"
+                stroke="none"
+                stroke-width="1"
+                fill="none"
+                fill-rule="evenodd"
+                opacity="0.600000024"
+              >
+                <g
+                  id="18_about_page_continue_learning-locked_button-active"
+                  transform="translate(-536.000000, -558.000000)"
+                  fill="#000000"
+                  fill-rule="nonzero"
+                >
+                  <g id="КУРС-ЛОК" transform="translate(67.000000, 553.000000)">
+                    <path
+                      d="M479.73241,11.6420579 C479.554118,11.4564351 479.337765,11.3636934 479.083018,11.3636934 L478.777636,11.3636934 L478.777636,9.4544948 C478.777636,8.23481709 478.357607,7.18756312 477.51728,6.31255877 C476.67702,5.43751959 475.671411,5 474.49995,5 C473.328522,5 472.322712,5.43751959 471.482519,6.31252394 C470.642192,7.18756312 470.222163,8.23478226 470.222163,9.4544948 L470.222163,11.3636934 L469.916647,11.3636934 C469.662101,11.3636934 469.445615,11.4564351 469.267355,11.6420579 C469.089096,11.8275414 469,12.0529704 469,12.3182752 L469,18.0454878 C469,18.3105488 469.08913,18.5360474 469.267355,18.7217051 C469.445615,18.9071538 469.662101,19 469.916647,19 L479.083252,19 C479.337999,19 479.554318,18.9072582 479.732644,18.7217051 C479.910736,18.5360474 480,18.3105488 480,18.0454878 L480,12.3181707 C480.000134,12.0530749 479.910736,11.8276807 479.73241,11.6420579 Z M476.944376,11.3636934 L472.055524,11.3636934 L472.055524,9.4544948 C472.055524,8.75187936 472.294284,8.1519311 472.771705,7.65485898 C473.249192,7.1577172 473.82524,6.90919855 474.50005,6.90919855 C475.174927,6.90919855 475.750841,7.15768238 476.228362,7.65485898 C476.705649,8.15189628 476.944376,8.75187936 476.944376,9.4544948 L476.944376,11.3636934 Z"
+                      id="Shape"
+                    ></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="about" #about>
+          <div class="lesson-item" *ngFor="let item of module.info | async">
+            <div class="lesson-progress">
+              <svg viewBox="0 0 16 16" version="1.1">
+                <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="14_main-auth_user" transform="translate(-139.000000, -377.000000)">
+                    <g id="Left-Side">
+                      <g id="User_progress">
+                        <g id="Group-2" transform="translate(90.000000, 240.000000)">
+                          <g id="Group-12" transform="translate(50.000000, 138.000000)">
+                            <path
+                              d="M0,7 C0,10.85 3.15,14 7,14 C10.85,14 14,10.85 14,7 C14,3.15 10.85,0 7,0 C3.15,0 0,3.15 0,7 Z"
+                              id="Path"
+                              stroke="#88CA60"
+                              stroke-width="1.5"
+                              [ngStyle]="{ opacity: item.currentScore === item.maxScore ? 1 : 0.3 }"
+                            ></path>
+                            <path
+                              d="M0,7 C0,10.85 3.15,14 7,14 C10.85,14 14,10.85 14,7 C14,3.15 10.85,0 7,0 C3.15,0 0,3.15 0,7 Z"
+                              id="Path"
+                              stroke="#88CA60"
+                              stroke-width="1.5"
+                              [ngStyle]="{
+                                strokeLineCap: 'round',
+                                strokeDasharray: 44,
+                                strokeDashoffset: 44 + 44 * (item.currentScore / item.maxScore)
+                              }"
+                            ></path>
+                            <path
+                              d="M3,7 C3,9.2 4.8,11 7,11 C9.2,11 11,9.2 11,7 C11,4.8 9.2,3 7,3 C4.8,3 3,4.8 3,7 Z"
+                              id="Path"
+                              fill="#88CA60"
+                              [ngStyle]="{ opacity: item.currentScore === item.maxScore ? 1 : 0.3 }"
+                            ></path>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="lesson-header">{{ item.title || item.fileName }}</div>
+            <div class="lesson-icon">
+              <svg viewBox="0 0 20 17" version="1.1">
+                <g
+                  id="Desktop"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
+                  opacity="0.25"
+                >
+                  <g id="14_main-auth_user" transform="translate(-475.000000, -376.000000)">
+                    <g id="Left-Side">
+                      <g id="User_progress">
+                        <g id="Group-2" transform="translate(90.000000, 240.000000)">
+                          <g id="icons/video" transform="translate(385.000000, 136.000000)">
+                            <g id="Group-10">
+                              <rect
+                                id="Rectangle"
+                                stroke="#415061"
+                                stroke-width="1.5"
+                                x="0.75"
+                                y="0.75"
+                                width="18.5"
+                                height="12.5"
+                                rx="2"
+                              ></rect>
+                              <path
+                                d="M5.5,15.5 L14.5,15.5"
+                                id="Line"
+                                stroke="#415061"
+                                stroke-width="2"
+                                stroke-linecap="square"
+                              ></path>
+                              <polygon
+                                id="Triangle"
+                                fill="#415061"
+                                transform="translate(10.500000, 7.000000) rotate(90.000000) translate(-10.500000, -7.000000) "
+                                points="10.5 4.5 13.5 9.5 7.5 9.5"
+                              ></polygon>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="lesson-duration">
+              {{ item.duration ? item.duration + '.мин' : '' }}
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </ng-container>
+
+  <div class="header test">Тесты</div>
+  <ul class="modules">
+    <li class="module-wrap">
+      <div
+        class="top"
+        [ngStyle]="{ cursor: 'default' }"
+        [ngClass]="{ disabled: !userInfo.emailVerified }"
+      >
+        <div class="arrow"></div>
+        <div class="header">Итоговый тест</div>
+        <div class="duration">
+          <ng-container *ngIf="userInfo.emailVerified">
+            {{ courseCard.test.duration }} мин.
+          </ng-container>
+          <svg viewBox="0 0 11 14" version="1.1" *ngIf="!userInfo.emailVerified">
+            <g
+              id="Desktop"
+              stroke="none"
+              stroke-width="1"
+              fill="none"
+              fill-rule="evenodd"
+              opacity="0.600000024"
+            >
+              <g
+                id="18_about_page_continue_learning-locked_button-active"
+                transform="translate(-536.000000, -558.000000)"
+                fill="#000000"
+                fill-rule="nonzero"
+              >
+                <g id="КУРС-ЛОК" transform="translate(67.000000, 553.000000)">
+                  <path
+                    d="M479.73241,11.6420579 C479.554118,11.4564351 479.337765,11.3636934 479.083018,11.3636934 L478.777636,11.3636934 L478.777636,9.4544948 C478.777636,8.23481709 478.357607,7.18756312 477.51728,6.31255877 C476.67702,5.43751959 475.671411,5 474.49995,5 C473.328522,5 472.322712,5.43751959 471.482519,6.31252394 C470.642192,7.18756312 470.222163,8.23478226 470.222163,9.4544948 L470.222163,11.3636934 L469.916647,11.3636934 C469.662101,11.3636934 469.445615,11.4564351 469.267355,11.6420579 C469.089096,11.8275414 469,12.0529704 469,12.3182752 L469,18.0454878 C469,18.3105488 469.08913,18.5360474 469.267355,18.7217051 C469.445615,18.9071538 469.662101,19 469.916647,19 L479.083252,19 C479.337999,19 479.554318,18.9072582 479.732644,18.7217051 C479.910736,18.5360474 480,18.3105488 480,18.0454878 L480,12.3181707 C480.000134,12.0530749 479.910736,11.8276807 479.73241,11.6420579 Z M476.944376,11.3636934 L472.055524,11.3636934 L472.055524,9.4544948 C472.055524,8.75187936 472.294284,8.1519311 472.771705,7.65485898 C473.249192,7.1577172 473.82524,6.90919855 474.50005,6.90919855 C475.174927,6.90919855 475.750841,7.15768238 476.228362,7.65485898 C476.705649,8.15189628 476.944376,8.75187936 476.944376,9.4544948 L476.944376,11.3636934 Z"
+                    id="Shape"
+                  ></path>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="buttons">
+    <button mat-flat-button color="accent" *ngIf="userInfo.emailVerified">
+      Продолжить обучение
+    </button>
+  </div>
+  <div class="bot-content">
+    <img src="../../../../assets/courses/logo/google_g.svg" alt="" />
+    <div class="shape"></div>
+    <img src="../../../../assets/courses/logo/sberbank_g.svg" alt="" />
+  </div>
+</div>

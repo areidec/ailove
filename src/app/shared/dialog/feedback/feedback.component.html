@@ -1,0 +1,41 @@
+<div mat-dialog-title class="header">Задать вопрос</div>
+<div mat-dialog-content class="content-wrap">
+  <form [formGroup]="feedBackForm">
+    <mat-form-field class="full-width" [style.fontSize]="'0.9375vw'">
+      <input matInput placeholder="Ваше имя" formControlName="name" />
+    </mat-form-field>
+    <mat-form-field class="full-width" [style.fontSize]="'0.9375vw'">
+      <input matInput placeholder="Email" formControlName="email" />
+    </mat-form-field>
+    <mat-form-field class="full-width" [style.fontSize]="'0.9375vw'">
+      <mat-label>Выберите тему</mat-label>
+      <mat-select formControlName="topic">
+        <mat-option *ngFor="let item of topics | async" [value]="item.id">
+          {{ item.text }}
+        </mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="feedBackForm.controls.email.hasError('required')">
+        Это поле обязательно для заполнения
+      </mat-error> -->
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <textarea matInput placeholder="Ваш вопрос" formControlName="question" rows="5"></textarea>
+    </mat-form-field>
+  </form>
+  <div [ngStyle]="{ width: '100%' }" *ngIf="errorsArr.length > 0">
+    <mat-error class="error" *ngFor="let item of errorsArr">
+      {{ item }}
+    </mat-error>
+  </div>
+</div>
+<div mat-dialog-actions class="buttons-wrap">
+  <button
+    mat-flat-button
+    color="accent"
+    class="main-button"
+    (click)="sendFeedback()"
+    [disabled]="!feedBackForm.valid"
+  >
+    Отправить
+  </button>
+</div>

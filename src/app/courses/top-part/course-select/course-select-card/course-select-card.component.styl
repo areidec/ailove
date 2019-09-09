@@ -1,0 +1,204 @@
+@import ('../../../../../libs/css/params.styl');
+
+:host {
+  overflow: hidden;
+
+  .card-parent {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    &.hover {
+      .card-overlay {
+        transition: opacity 0.45s $OutCubic;
+        opacity: 1;
+      }
+
+      .card-inner {
+        .number {
+          border: 1px solid #ffffff;
+          transition: border 0.45s $OutCubic;
+        }
+
+        .info {
+          .about {
+            transition: opacity 0.45s $OutCubic;
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    &.active {
+      .card-overlay {
+        transition: opacity 0s;
+        opacity: 1;
+      }
+
+      .card-inner {
+        transform: translateY(-35%);
+        transition: height 0.45s $OutCubic, transform 0.45s $OutCubic;
+        height: 50%;
+
+        .number {
+          border: 1px solid #ffffff;
+          transition: border 0s;
+        }
+
+        .info {
+          .about {
+            transition: opacity 0s;
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    .card-overlay {
+      position: absolute;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.45s $InCubic;
+    }
+
+    .card-inner {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      height: 60%;
+      transform: translateY(0);
+      transition: height 0.45s $InCubic, transform 0.45s $InCubic;
+
+      .number {
+        position: relative;
+        font-weight: 300;
+        fzd(50);
+        lhd(56);
+        width: 7.8vw;
+        height: 7.8vw;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: border 0.45s $InCubic;
+        cursor: pointer;
+
+        .inner-numb, .inner-play {
+          position: absolute;
+        }
+
+        .inner-play {
+          width: 30%;
+          height: 30%;
+
+          svg {
+            overflow: visible;
+
+            .play {
+              transition: fill 0.45s $InCubic;
+              fill: rgba(255, 255, 255, 0);
+            }
+          }
+        }
+
+        &:hover {
+          .inner-play {
+            svg {
+              .play {
+                fill: rgba(255, 255, 255, 1);
+                transition: fill 0.45s $OutCubic;
+              }
+            }
+          }
+        }
+      }
+
+      .info {
+        text-align: center;
+        color: white;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .header {
+          fzd(42);
+          lhd(50);
+          font-weight: 300;
+          width: 72%;
+        }
+
+        .about {
+          fzd(20);
+          lh(28);
+          font-weight: 400;
+          width: 70%;
+          opacity: 0.5;
+          transition: opacity 0.45s $InCubic;
+        }
+      }
+
+      .button {
+        margin-top: 2vw;
+        width: 7.81vw;
+        height: 2.5vw;
+        border-radius: 1.25vw;
+        fzd(13);
+        text-transform: uppercase;
+        font-weight: 700;
+        color: white;
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+    }
+
+    .bottom-info {
+      position: absolute;
+      bottom: 0;
+      transform: translateZ(0px) perspective(1px);
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+
+      .about {
+        fzd(18);
+        lhd(26);
+        font-weight: 400;
+        text-align: center;
+      }
+
+      .programm {
+        text-align: center;
+        fzd(13);
+        font-weight: 700;
+        text-transform: uppercase;
+        width: 70%;
+        margin: 1vw 0 2vw;
+        padding-top: 1vw;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+
+        span {
+          cursor: pointer;
+          color: white;
+          transition: color 0.25s $InCubic;
+
+          &:hover {
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.25s $OutCubic;
+          }
+        }
+      }
+    }
+  }
+}

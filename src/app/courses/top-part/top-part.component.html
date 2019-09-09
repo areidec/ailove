@@ -1,0 +1,10 @@
+<div class="background" (window:resize)="onResize()" [ngClass]="bgClass"></div>
+<div class="overlay black"></div>
+<div class="overlay gray"></div>
+<div class="content">
+  <app-initial *ngIf="currentState.id === 0 && !userLogined" [@fade]></app-initial>
+  <app-course-select *ngIf="currentState.id === 1" [@fade]></app-course-select>
+  <app-user-course *ngIf="currentState.id === 0 && userLogined" [@fade]> </app-user-course>
+  <!-- <app-initial *ngIf="!nextStep" [@fadeInOut] [(nextStep)]="nextStep"></app-initial>
+  <app-course-select *ngIf="nextStep" [@fadeInOut]></app-course-select> -->
+</div>

@@ -1,0 +1,48 @@
+<!-- <div class="login">
+  <div class="close" (click)="closeModal()"></div>
+  <div class="header">Вход</div>
+
+  <form action="">
+    <div class="inputs">
+      <input [(ngModel)]="email" type="text" name="email" placeholder="Email" />
+      <input [(ngModel)]="password" type="password" name="password" placeholder="Введите пароль" />
+    </div>
+    <div class="buttons">
+      <input
+        type="submit"
+        (click)="logoutUser($event)"
+        value="выйти"
+        [ngClass]="{ button: true, disabled: !userLogined }"
+      />
+      <input
+        type="submit"
+        (click)="loginUser($event)"
+        value="войти"
+        [ngClass]="{ button: true, disabled: userLogined }"
+      />
+    </div>
+  </form>
+</div> -->
+
+<div mat-dialog-title class="header">Вход</div>
+<div mat-dialog-content class="content-wrap">
+  <mat-form-field class="full-width" [style.fontSize]="'0.9375vw'">
+    <input matInput placeholder="Email" [(ngModel)]="email" />
+  </mat-form-field>
+  <mat-form-field class="full-width" [style.fontSize]="'0.9375vw'">
+    <input type="password" matInput placeholder="Введите пароль" [(ngModel)]="password" />
+  </mat-form-field>
+  <div [ngStyle]="{ width: '100%' }" *ngIf="errorsArr.length > 0">
+    <mat-error class="error" *ngFor="let item of errorsArr">
+      {{ item }}
+    </mat-error>
+  </div>
+</div>
+<div mat-dialog-actions class="buttons-wrap">
+  <div class="link-to" (click)="openResendPassword()">Напомнить пароль</div>
+  <button mat-flat-button color="accent" class="main-button" (click)="loginUser()">Войти</button>
+</div>
+<div mat-dialog-actions class="buttons-wrap second">
+  <div [ngStyle]="{ marginRight: '0.5vw' }">Еще не зарегистрированы?</div>
+  <div class="link-to">Регистрация</div>
+</div>

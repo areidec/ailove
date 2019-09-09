@@ -1,0 +1,47 @@
+<div class="header-parent" [ngClass]="defineCssState()">
+  <div class="logo-wrap">
+    <div class="logo">
+      <img src="../../../assets/articles/header/logo.svg" alt="" />
+    </div>
+  </div>
+  <div class="right-side-content">
+    <div class="list">
+      <a class="text" (click)="changeState(1)">Курсы</a>
+      <a class="text" (click)="changeState(2)">Статьи и&nbsp;истории успеха</a>
+    </div>
+    <div class="login">
+      <div class="login-btn" (click)="openDialog()" *ngIf="!userLogined">
+        <div class="login-icon">
+          <img src="../../../assets/articles/header/lock.svg" alt="" />
+        </div>
+        <span class="text">{{ !userLogined ? 'Вход' : 'ЛК' }}</span>
+      </div>
+      <a href="https://google.com" target="_blank" *ngIf="userLogined" rel="noopener noreferrer">
+        <div class="login-btn">
+          <span class="text">{{ !userLogined ? 'Вход' : 'ЛК' }}</span>
+        </div>
+      </a>
+      <button
+        mat-flat-button
+        color="accent"
+        class="study-btn-mat"
+        (click)="toggleRegistration(true)"
+        *ngIf="!userLogined"
+      >
+        Начать обучение
+      </button>
+      <a
+        mat-flat-button
+        color="accent"
+        class="study-btn-mat"
+        *ngIf="userLogined"
+        href="http://google.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Продолжить обучение
+      </a>
+    </div>
+  </div>
+</div>
+<app-registration *ngIf="!userLogined && showRegistration" [@slideIn]></app-registration>

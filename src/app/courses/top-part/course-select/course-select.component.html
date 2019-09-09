@@ -1,0 +1,7 @@
+<div class="courses-cards-parent">
+  <app-course-select-card
+    *ngFor="let course of coursesList; let ind = index"
+    [card]="course"
+    [index]="ind"
+  ></app-course-select-card>
+</div>

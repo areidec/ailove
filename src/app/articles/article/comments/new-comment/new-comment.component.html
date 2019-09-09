@@ -1,0 +1,43 @@
+<div class="new-comment">
+  <div class="comment" [ngClass]="{ unloggined: !userLogined }">
+    <div class="comment-author" *ngIf="userLogined">
+      <div class="portrait">
+        <div class="inner-img">
+          <img
+            [src]="
+              userInfo?.avatar
+                ? 'https://business-class.pro' + userInfo.avatar
+                : '../../../../assets/default_avatar.png'
+            "
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+    <div class="comment-body" *ngIf="userLogined">
+      <mat-form-field>
+        <textarea
+          [(ngModel)]="commentText"
+          matInput
+          rows="7"
+          placeholder="Введите комментарий"
+        ></textarea>
+      </mat-form-field>
+      <button
+        mat-flat-button
+        color="accent"
+        class="main-button"
+        (click)="sendComment()"
+        [disabled]="checkComment()"
+      >
+        Оставить Комментарий
+      </button>
+    </div>
+    <div class="comment-login" *ngIf="!userLogined">
+      <div class="login-about">Оставлять комментарий может только авторизованные пользователи</div>
+      <button mat-flat-button color="accent" class="main-button" (click)="openDialog()">
+        Авторизоваться
+      </button>
+    </div>
+  </div>
+</div>

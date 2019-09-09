@@ -1,0 +1,11 @@
+<div class="teachers-host">
+  <h2 class="teachers-header">
+    Преподаватели
+  </h2>
+  <div class="teachers-wrap">
+    <app-teacher-card
+      *ngFor="let teacherCard of teachers"
+      [teacher]="teacherCard"
+    ></app-teacher-card>
+  </div>
+</div>

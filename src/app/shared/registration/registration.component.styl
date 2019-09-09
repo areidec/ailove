@@ -1,0 +1,152 @@
+@import ('../../../libs/css/params.styl');
+
+$layout-bg = rgba(#34393e, 0.6);
+
+.registration-wrap {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background-color: $layout-bg;
+  overflow: hidden;
+
+  .inner-cont {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+
+    .close-helper {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    .registration-form-wrap {
+      width: 32.5%;
+      height: 100%;
+      overflow-y: scroll;
+      background-color: white;
+      position: relative;
+      z-index: 2;
+      bshHover();
+
+      .close-shape-wrap {
+        width: 3vw;
+        height: 3vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+
+        .shape {
+          width: 1.45vw;
+          height: 2px;
+          background: white;
+          position: relative;
+          transform-origin: 50% 50%;
+          transform: rotate(45deg);
+
+          &:after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: white;
+            transform-origin: 50% 50%;
+            transform: rotate(90deg);
+          }
+        }
+      }
+
+      .registration-header {
+        width: 100%;
+        height: 7.5vw;
+        background-color: $yellow;
+        color: white;
+      }
+
+      .title {
+        padding: 3.75vw 0 0 2.5vw;
+        font-weight: 400;
+        fzd(28);
+        lhd(34);
+      }
+
+      .registration-content {
+        width: 100%;
+        height: calc(100% - 7.5vw);
+
+        form {
+          width: 100%;
+          margin: 0;
+          padding: 2.1vw 2.6vw;
+          box-sizing: border-box;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          align-items: center;
+          align-content: flex-start;
+
+          .input-wrap {
+            width: 45%;
+            margin-bottom: 1vw;
+
+            &.big {
+              width: 100%;
+            }
+
+            &.cb {
+              // margin-top: 0.75vw;
+            }
+          }
+
+          * {
+            fzd(16);
+          }
+
+          .error {
+            fzd(14);
+          }
+        }
+
+        button {
+          width: 12.5vw;
+          height: 3.125vw;
+          margin-top: 1vw;
+          fzd(14);
+          line-height: 3.125vw;
+          text-transform: uppercase;
+          color: white;
+        }
+
+        .radio-title {
+          font-size: 16px;
+          margin-right: 5px;
+        }
+
+        .example-radio-group {
+          display: flex;
+          align-items: center;
+        }
+
+        .example-radio-button {
+          margin: 5px;
+        }
+      }
+    }
+  }
+}

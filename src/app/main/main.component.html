@@ -1,0 +1,8 @@
+<div class="preloader-wrap" *ngIf="!loaded" [@fade]>
+  <app-preloader></app-preloader>
+</div>
+<div class="parent" *ngIf="loaded" [ngClass]="defineCssState()" [@fade]>
+  <app-courses></app-courses>
+  <app-articles-header></app-articles-header>
+  <router-outlet></router-outlet>
+</div>

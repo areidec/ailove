@@ -1,0 +1,9 @@
+{
+  "/api/*": {
+    "target": "https://empty-response.google-bc-backend.ndev.ailove.ru",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "auth": "ailove-dev:NzwVmooH"
+  }
+}

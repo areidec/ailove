@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="192px" height="37px" viewBox="0 0 192 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3_main_scrolled_2" transform="translate(-234.000000, -824.000000)">
+            <g id="Left-Side" transform="translate(0.000000, -776.000000)">
+                <g id="Group-18" transform="translate(35.000000, 0.000000)">
+                    <g id="Group-19" transform="translate(53.000000, 1600.000000)">
+                        <g id="Group" transform="translate(146.000000, 0.000000)">
+                            <g id="Group-2">
+                                <rect id="Rectangle" fill="#FFFFFF" opacity="0.300000012" x="0" y="19" width="60" height="2"></rect>
+                                <rect id="Rectangle" fill="#FFFFFF" opacity="0.300000012" x="132" y="19" width="60" height="2"></rect>
+                                <path d="M106.496094,34.4466334 L104.831179,22.8694239 L112.983036,14.481877 L101.457969,12.4877506 L96,2.14297901 L90.5420313,12.4877506 L79.0169638,14.481877 L87.1688212,22.8694239 L85.5039064,34.4466334 L96,29.2856509 L106.496094,34.4466334 Z" id="Star" stroke="#FFFFFF" stroke-width="2"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

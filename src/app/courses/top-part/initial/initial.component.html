@@ -1,0 +1,45 @@
+<div class="first-step" *ngIf="!nextStep">
+  <div class="mid-content">
+    <div class="play"></div>
+    <div class="about">Онлайн-курсы для&nbsp;предпринимателей от&nbsp;Google и&nbsp;Сбербанка</div>
+    <button mat-flat-button color="accent" (click)="knowMore()" class="button">
+      Узнать больше
+    </button>
+  </div>
+  <div class="bot-content">
+    <img src="../../../../assets/courses/logo/google.svg" alt="" />
+    <div class="shape"></div>
+    <img src="../../../../assets/courses/logo/sberbank.svg" alt="" />
+  </div>
+</div>
+<div class="second-step" *ngIf="nextStep" [@fadeInOut]>
+  <div class="top-content">
+    <div class="header-wrap">
+      <h2 class="header">Все наши онлайн-курсы бесплатные и&nbsp;будут такими всегда.</h2>
+      <div class="about">
+        На&nbsp;данный момент мы&nbsp;предлагаем онлайн-курсы по&nbsp;3&nbsp;направлениям. Выберите
+        курс, который<br />подходит именно вам.
+      </div>
+    </div>
+  </div>
+  <div class="mid-content">
+    <div class="card-wrap">
+      <app-course-card
+        *ngFor="let card of courseCards; let index = index"
+        [card]="card"
+        [index]="index"
+      ></app-course-card>
+    </div>
+  </div>
+  <div class="bot-content">
+    <div class="bot-wrap">
+      <div class="shape">
+        <img src="../../../../assets/courses/star.svg" alt="" />
+      </div>
+      <div class="about">
+        Чтобы успешно заниматься на&nbsp;наших курсах, вам потребуется не&nbsp;более 3&nbsp;часов
+        в&nbsp;неделю и&nbsp;доступ в&nbsp;интернет
+      </div>
+    </div>
+  </div>
+</div>

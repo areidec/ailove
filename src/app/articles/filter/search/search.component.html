@@ -1,0 +1,61 @@
+<div class="search-component-wrap z-index-comp">
+  <div class="close-helper" (click)="toggleSearch(false)"></div>
+  <div class="search-content-wrap slide-in-comp">
+    <div class="inner-cont">
+      <div class="search-wrap">
+        <div class="input-wrap">
+          <mat-form-field class="form-field">
+            <input
+              matInput
+              placeholder="Поиск по ключевому слову"
+              [(ngModel)]="keyword"
+              (input)="handleInput()"
+            />
+            <!-- <mat-icon class="search-input-icon" matSuffix>search</mat-icon> -->
+          </mat-form-field>
+        </div>
+        <button class="search-btn" mat-flat-button color="basic">
+          <div class="search-icon" (click)="toggleSearch(false)">
+            <!-- <img src="../../../assets/articles/filter/close.svg" alt="" /> -->
+            <mat-icon class="search-icon">close</mat-icon>
+          </div>
+        </button>
+      </div>
+      <div class="tabbar-content">
+        <mat-tab-group
+          dynamicHeight
+          [selectedIndex]="currentIndex"
+          (selectedIndexChange)="setNewIndex($event)"
+        >
+          <mat-tab *ngFor="let item of tabs" [label]="item">
+            <mat-chip-list class="tab-content">
+              <mat-chip
+                class="tag"
+                [ngClass]="{ active: tagSelected(tag) }"
+                *ngFor="let tag of getTags(item)"
+                (click)="toggleTag(tag)"
+                [selectable]="!tagSelected(tag)"
+                [removable]="tagSelected(tag)"
+                (removed)="toggleTag(tag)"
+              >
+                {{ '#' + tag.text }}
+                <mat-icon class="mat-icon" matChipRemove *ngIf="tagSelected(tag)">cancel</mat-icon>
+              </mat-chip>
+            </mat-chip-list>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+    <div class="bottom-cont">
+      <div class="items-found" [innerHTML]="getItemsFoundInnerHTML()"></div>
+      <div class="right-btns">
+        <button mat-button color="basic" (click)="clearTags()">
+          Очистить фильтр
+        </button>
+        <button mat-button color="primary" (click)="submitSelection()">
+          Применить
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

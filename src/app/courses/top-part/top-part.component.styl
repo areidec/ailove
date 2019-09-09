@@ -1,0 +1,56 @@
+
+:host {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: block;
+  right: 0;
+
+  &.initial {
+    width: calc(100vw - 4.15vw);
+    // width: 35vw;
+    position: absolute;
+  }
+
+  &.courses {
+    width: calc(100vw - 4.15vw);
+  }
+
+  .background, .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .background {
+    background-image: url('../../../assets/courses/main-bg.jpg');
+    background-position: 50% 50%;
+
+    &.narrow {
+      background-size: auto 100%;
+    }
+
+    &.wide {
+      background-size: 100vw auto;
+    }
+  }
+
+  .overlay {
+    &.gray {
+      background-color: #445567;
+      opacity: 0.92;
+    }
+
+    &.black {
+      background-color: #202020;
+      opacity: 0.4;
+    }
+  }
+
+  .content {
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+  }
+}

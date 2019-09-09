@@ -1,0 +1,43 @@
+@import ('../../../../libs/css/params.styl');
+
+:host {
+  margin-bottom: 2vw;
+  width: 18.07%;
+  margin-right: 2.4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  &:nth-child(5) {
+    margin-right: 0;
+  }
+
+  .photo {
+    width: 100%;
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
+    height: 20vw;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .name {
+    color: $gray;
+    fzd(20);
+    lhd(34);
+    font-weight: 500;
+  }
+
+  .about {
+    margin-top: 0.5vw;
+    width: 90%;
+    fzd(16);
+    lhd(22);
+    color: #9A9D9F;
+  }
+}
