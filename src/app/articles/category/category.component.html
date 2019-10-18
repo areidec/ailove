@@ -1,20 +1,19 @@
 <div class="category-parent" [ngClass]="defineCssState()">
   <div
-    class="cards-wrap"
-    *ngFor="let articlesArr of renderArticlesArrs; let arrIndex = index"
-    [ngClass]="defineArticlesParentStyle(arrIndex)"
+    class="cards-wrap show narrow"
   >
     <app-articles-card
-      *ngFor="let article of articlesArr; let index = index"
+      *ngFor="let article of renderArticlesShow; let index = index"
       [big]="getPatternData(index)"
       [article]="article"
       [@fadeInOut]
+      [style.grid-row-end]="getPatternData(index) ? 'span 2': ''"
     ></app-articles-card>
   </div>
   <div
     class="show-more-btn"
     *ngIf="showArticlesIndex < renderArticlesArrs.length - 1"
-    (click)="showArticlesIndex = showArticlesIndex + 1"
+    (click)="onMoreArticles()"
   >
     Показать больше материалов
   </div>

@@ -71,6 +71,8 @@ export class CurrentArticle {
   public preview_image: string;
   public slug: string;
   public id: number;
+  public user_already_liked: boolean;
+  public relevant_articles: (CurrentArticle[])[];
   public constructor(fields: {
     author: { name: string; image: string };
     category: ArticleFilter;
@@ -84,6 +86,7 @@ export class CurrentArticle {
     tags: any[];
     title: string;
     id: number;
+    user_already_liked: boolean;
   }) {
     if (fields) {
       Object.assign(this, fields);

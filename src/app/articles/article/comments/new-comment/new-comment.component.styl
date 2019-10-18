@@ -94,6 +94,10 @@
         .mat-form-field {
           width: 100%;
 
+          >>>.mat-form-field-underline {
+            display: none;
+          }
+
           textarea {
             background-color: #fff;
             resize: none;
@@ -110,4 +114,112 @@
       }
     }
   }
+
+  .fix-bgc {
+    background: #fcc624;
+    line-height: 2.7vw;
+  }
+
+  .fix-height {
+    height: auto !important;
+  }
+
+  @media screen and (max-width: 768px) {
+
+    mat-form-field {
+      margin-top: -0.5em;
+      height: 40px;
+      overflow: hidden;
+
+      &.mat-focused {
+        height: auto;
+      }
+
+      textarea {
+        background-color: transparent !important;
+      }
+
+    }
+
+    .new-comment {
+
+      .comment {
+        margin: 24px 0;
+        background: #f8f8f8;
+        width: calc(100% - 40px);
+        margin-left: 20px;
+
+        &.unloggined {
+          width: 100%;
+          margin: 24px 0;
+          margin-left: 0;
+
+          .comment-login {
+            width: 100%;
+            height: auto;
+
+            .login-about {
+              margin-top: 51px;
+              margin-bottom: 35px;
+              font-size: 16px;
+              line-height: 1.38;
+              width: calc(100% - 40px);
+              margin-left: 20px;
+            }
+
+            button {
+              width: 200px;
+              height: 52px;
+              font-size: 16px;
+              line-height: 52px;
+              margin-bottom: 43px;
+            }
+
+          }
+
+        }
+
+        .comment-author {
+          width: auto;
+          margin-right: 16px;
+
+          .portrait {
+            width: 43px;
+            height: 43px;
+            border: none;
+
+            .inner-img {
+              height: 100%;
+              width: 100%;
+            }
+
+          }
+
+        }
+
+        .comment-body {
+          background: none;
+          width: 100%;
+          height: auto;
+          padding: 0;
+          align-items: center;
+
+          .main-button {
+            font-size: 13px;
+            line-height: normal;
+            margin-top: 15px;
+            width: 221px;
+            border-radius: 26px;
+            height: 52px;
+            margin-left: -50px;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
 }

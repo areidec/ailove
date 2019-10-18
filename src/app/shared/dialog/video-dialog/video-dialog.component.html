@@ -1,0 +1,20 @@
+<button class="close" (click)="this.dialogRef.close()">Закрыть</button>
+<iframe width="100%" height="100%"
+    [src]='url'
+    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+</iframe>
+<button *ngIf="!userLogined"
+        mat-stroked-button
+        class="button button-empty position-btn"
+        (click)="toggleRegistration(true) || dialogRef.close()">
+        Начать обучение
+</button>
+<a href="https://www.business-class.pro/modules" *ngIf="userLogined">
+    <button
+        mat-stroked-button
+        class="button button-empty position-btn"
+        (click)="toggleRegistration(true) || dialogRef.close()">
+        Начать обучение
+    </button>
+</a>

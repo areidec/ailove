@@ -8,6 +8,8 @@ export class CourseCard {
   public extraModules: CourseModule[];
   public test: CourseModule;
   public id?: number;
+  public title?: string;
+  public youtube_video_url?: string;
 
   public constructor(fields: {
     name: string;
@@ -18,6 +20,7 @@ export class CourseCard {
     extraModules: CourseModule[];
     test: CourseModule;
     id?: number;
+    youtube_video_url?: string;
   }) {
     if (fields) {
       Object.assign(this, fields);
@@ -32,8 +35,9 @@ export interface ApiModel {
   color: string;
   modules: [];
   extra_modules: [];
-  final_test: { title: string; info: string; duration: number };
+  final_test: { title: string; info: string; duration: number, state: string };
   id: number;
+  youtube_video_url: string;
 }
 
 export interface UserInfoResponse {

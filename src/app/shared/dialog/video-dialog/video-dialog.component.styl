@@ -1,0 +1,45 @@
+:host {
+    display flex;
+    position relative;
+    height 100%;
+    .close {
+        position: absolute;
+        top: -40px;
+        right 0;
+        border: none;
+        border-bottom: 1px dashed #fff;
+        background: transparent;
+        outline: none;
+        color: #fff;
+        padding 0;
+        cursor pointer;
+    }
+
+    .button-empty {
+        width: 10vw;
+        height: 2.5vw;
+        border-radius: 1.25vw;
+        fzd(13);
+        border-color: rgba(255, 255, 255, 0.4);
+        color: #ffffff;
+        font-weight bold;
+    }
+
+    .position-btn {
+        position: absolute;
+        bottom: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+  @media screen and (max-width: 768px) {
+    .close {
+      display: none;
+    }
+
+    .button-empty {
+      display: none;
+    }
+  }
+
+}

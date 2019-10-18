@@ -29,10 +29,11 @@ export class CourseCardsService {
             extra_modules,
             final_test,
             id,
+            youtube_video_url
           }: ApiModel) => {
             const createModules = (base: []) => {
               return base.map(
-                ({ pk, title, info, duration, lessons_count, completed_lessons_count }) => {
+                ({ pk, title, info, duration, lessons_count, completed_lessons_count, state, }) => {
                   return new CourseModule({
                     name: title,
                     about: info,
@@ -40,6 +41,7 @@ export class CourseCardsService {
                     id: pk,
                     count: lessons_count,
                     completed: completed_lessons_count,
+                    state,
                   });
                 },
               );
@@ -58,6 +60,7 @@ export class CourseCardsService {
               extraModules: createModules(extra_modules),
               test,
               id,
+              youtube_video_url
             });
           },
         );

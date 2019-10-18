@@ -40,7 +40,7 @@
       }
 
       .card-inner {
-        transform: translateY(-35%);
+        transform: translateY(-40%);
         transition: height 0.45s $OutCubic, transform 0.45s $OutCubic;
         height: 50%;
 
@@ -51,8 +51,8 @@
 
         .info {
           .about {
-            transition: opacity 0s;
-            opacity: 1;
+            transition: opacity 0.5s;
+            opacity: 0;
           }
         }
       }
@@ -77,7 +77,7 @@
       transform: translateY(0);
       transition: height 0.45s $InCubic, transform 0.45s $InCubic;
 
-      .number {
+        .number {
         position: relative;
         font-weight: 300;
         fzd(50);
@@ -201,4 +201,140 @@
       }
     }
   }
+
+  @media screen and (max-width: 768px) {
+
+    .card-parent {
+      height: auto;
+
+      flex-direction: column;
+
+      .card-overlay {
+        transition: opacity 0.45s $OutCubic;
+        opacity: 1;
+      }
+
+      .card-inner {
+        height: auto;
+        padding-top: 30px;
+        padding-bottom: 131px;
+
+        mat-divider {
+          width: calc(100% - 40px);
+          margin-left: 20px;
+          border-top: solid 1px #fff;
+          margin-bottom: 24px;
+        }
+
+        .number {
+          border: 1px solid #ffffff;
+          transition: border 0.45s $OutCubic;
+          width: 80px;
+          height: 80px;
+
+          .inner-play {
+            width: 26px;
+            height: 26px;
+          }
+
+        }
+
+        .number-mobile {
+          position:absolute;
+          right: 20px;
+          top: 25px;
+          font-size: 14px;
+          line-height: normal;
+          letter-spacing: 1px;
+        }
+
+        .info {
+
+          .header {
+            font-size: 28px;
+            line-height: 1.21;
+            letter-spacing: -0.7px;
+            width: 100%;
+            margin: 14px 0;
+          }
+
+          .about {
+            transition: opacity 0.45s $OutCubic;
+            opacity: 1;
+            font-size: 14px;
+            line-height: 1.43;
+            letter-spacing: normal;
+            width: 100%;
+          }
+
+        }
+
+        .button {
+          background: #fff;
+          margin: 30px 0;
+          width: 200px;
+          height: 48px;
+          border-radius: 28.8px;
+          font-size: 13px;
+          line-height: 48px;
+        }
+
+      }
+
+      .bottom-info {
+        bottom: 27px;
+
+        .about {
+          font-size: 14px;
+          line-height: 1.43;
+        }
+
+        .programm {
+          padding-top: 19px;
+          margin: 0;
+          font-size: 13px;
+          border-top: none;
+
+          span {
+            border-bottom: 1px dashed #fff;
+          }
+
+        }
+
+      }
+
+      &.active {
+        .card-overlay {
+          transition: opacity 0s;
+          opacity: 1;
+        }
+
+        .card-inner {
+          transform: translateY(-100%);
+          transition: height 0.45s $OutCubic, transform 0.45s $OutCubic;
+          height: auto;
+
+          .number {
+            border: 1px solid #ffffff;
+            transition: border 0s;
+          }
+
+          .info {
+            .about {
+              transition: opacity 0.5s;
+              opacity: 1;
+            }
+          }
+        }
+
+        .bottom-info {
+          bottom: calc(100% - 29px);
+        }
+
+      }
+
+    }
+
+  }
+
 }

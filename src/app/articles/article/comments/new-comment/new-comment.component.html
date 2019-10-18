@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <div class="comment-body" *ngIf="userLogined">
+    <div class="comment-body fix-height" *ngIf="userLogined">
       <mat-form-field>
         <textarea
           [(ngModel)]="commentText"
@@ -26,7 +26,7 @@
       <button
         mat-flat-button
         color="accent"
-        class="main-button"
+        class="main-button fix-bgc"
         (click)="sendComment()"
         [disabled]="checkComment()"
       >

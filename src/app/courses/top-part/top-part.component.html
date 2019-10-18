@@ -1,6 +1,10 @@
 <div class="background" (window:resize)="onResize()" [ngClass]="bgClass"></div>
 <div class="overlay black"></div>
 <div class="overlay gray"></div>
+<div
+  class="overlay white"
+  [ngStyle]="{ opacity: currentState.id === 2 && userLogined ? 1 : 0 }"
+></div>
 <div class="content">
   <app-initial *ngIf="currentState.id === 0 && !userLogined" [@fade]></app-initial>
   <app-course-select *ngIf="currentState.id === 1" [@fade]></app-course-select>

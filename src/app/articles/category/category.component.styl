@@ -26,8 +26,12 @@
   .cards-wrap {
     width: 100%;
     height: 0;
-    // padding-bottom: 3.65vw;
-    display: flex;
+    padding-bottom: 3.65vw;
+    display: grid;
+    grid-gap: 2.6vw;
+    grid-template-columns: repeat( auto-fill, minmax( 26vw, 1fr ) );
+    grid-auto-rows: 15.5vw;
+    //display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: stretch;
@@ -38,7 +42,8 @@
     transition: height 0.25s ease-in-out, opacity 0.25s ease-in-out 0.2s;
 
     &.show {
-      height: calc((2 * 15.5vw) + 31vw + (3 * 3.65vw)); // 2* no-img + img + 2 * margin
+      //height: calc((2 * 15.5vw) + 31vw + (3 * 3.65vw)); // 2* no-img + img + 2 * margin
+      height: auto;
       opacity: 1;
 
       &.wide {
@@ -82,4 +87,52 @@
       bshHover();
     }
   }
+
+  @media screen and (max-width: 768px) {
+
+    padding: 20px;
+
+    .show-more-btn {
+      max-width: 335px;
+      width: 100%;
+      height: 52px;
+      font-size: 13px;
+      line-height: 52px;
+      padding: 0;
+      margin: 0 auto 10px;
+      border-radius: 26px;
+
+      &:before {
+        height: 16px;
+        width: 16px;
+        left: 20px;
+        top: 17px;
+      }
+
+    }
+
+    .cards-wrap {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      height: 0;
+
+      &.show {
+        height: auto !important;
+      }
+
+    }
+
+  }
+
+  @media screen and (max-width: 340px) {
+
+    .show-more-btn {
+      &:before {
+        left: 10px;
+      }
+    }
+
+  }
+
 }

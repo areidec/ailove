@@ -5,6 +5,7 @@ import {
   UserInfo,
   UserInfoResponse,
 } from './../courses/shared/course-card.model';
+import { CommonVideoUrl } from '../courses/top-part/initial/commonVideo.model';
 import { TeachersService } from './../courses/teachers/teachers.service';
 import { CourseCardsService } from './../courses/shared/course-cards.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -15,18 +16,22 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { RegistrationService } from '../shared/registration/registration.service';
 
+
 @Injectable()
 export class StateService {
   private states: State[] = [
     new State({ id: 0, base: '' }),
     new State({ id: 1, base: 'courses' }),
     new State({ id: 2, base: 'articles' }),
+    new State({ id: 3, base: '404' }),
   ];
   public activeState: ReplaySubject<State> = new ReplaySubject<State>();
   public userLogined: Subject<boolean> = new Subject<boolean>();
   public load: Subject<boolean> = new Subject<boolean>();
   private loginedUserCourse: CourseCard;
   private userInfo: UserInfo;
+  public loginedUserCourseSubject = new ReplaySubject<CourseCard>();
+  public userInfoSubject = new ReplaySubject<UserInfo>();
   public currentState: State;
 
   constructor(
@@ -69,6 +74,8 @@ export class StateService {
       ([course, user]: [CourseCard, UserInfo]) => {
         this.loginedUserCourse = course;
         this.userInfo = user;
+        this.loginedUserCourseSubject.next(course);
+        this.userInfoSubject.next(user);
         this.userLogined.next(true);
         this.load.next(true);
       },
@@ -104,8 +111,7 @@ export class StateService {
 
   logoutUser() {
     console.log('logout');
-    this.userLogined.next(false);
-    this.httpClient.post('/api/auth/logout', {}).subscribe((res) => console.log(res));
+    this.httpClient.post('/api/auth/logout', {}).subscribe((res) => this.userLogined.next(false));
   }
 
   getUserInfoFromApi(): Observable<UserInfo> {
@@ -134,10 +140,11 @@ export class StateService {
           extra_modules,
           final_test,
           id,
+          youtube_video_url
         }: ApiModel) => {
           const createModules = (base: []) => {
             return base.map(
-              ({ pk, title, info, duration, lessons_count, completed_lessons_count }) => {
+              ({ pk, title, info, duration, lessons_count, completed_lessons_count, state }) => {
                 return new CourseModule({
                   name: title,
                   about: info,
@@ -145,6 +152,7 @@ export class StateService {
                   id: pk,
                   count: lessons_count,
                   completed: completed_lessons_count,
+                  state,
                 });
               },
             );
@@ -153,6 +161,7 @@ export class StateService {
             name: final_test.title,
             about: final_test.info,
             duration: final_test.duration,
+            state: final_test.state,
           });
           return new CourseCard({
             name,
@@ -163,6 +172,7 @@ export class StateService {
             extraModules: createModules(extra_modules),
             test,
             id,
+            youtube_video_url
           });
         },
       ),
@@ -186,4 +196,10 @@ export class StateService {
     this.currentState = nextState;
     this.activeState.next(nextState);
   }
+
+  getCommonVideo(): Observable<CommonVideoUrl> {
+    // @ts-ignore
+    return this.httpClient.get('/api/common/site-config');
+  }
 }
+

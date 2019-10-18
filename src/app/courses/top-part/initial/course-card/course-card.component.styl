@@ -46,9 +46,87 @@
       text-transform: uppercase;
       font-weight: 700;
 
+      .programm {
+        cursor: pointer;
+      }
+
       .choose {
+        cursor: pointer;
         margin-right: 2vw;
       }
     }
   }
+
+  @media screen and (max-width: 768px) {
+
+    width: 100%;
+    margin-bottom: 0;
+
+    .card-parent {
+      padding: 30px 20px;
+      width: 100vw;
+
+      .header {
+        font-size: 28px;
+        font-weight: 300;
+        line-height: 1.21;
+        letter-spacing: -0.7px;
+        text-align: center;
+        margin: 15px 0;
+      }
+
+      .about {
+        font-size: 14px;
+        line-height: 1.43;
+        text-align: center;
+        margin: 0;
+        margin-bottom: 20px;
+      }
+
+      .buttons {
+        font-size: 13px;
+        flex-direction: column;
+        align-items: center;
+
+        .choose {
+          margin-right:0;
+          margin-bottom: 51px;
+          position: relative;
+          background: #fff;
+          width: 200px;
+          text-align: center;
+          line-height: 48px;
+          border-radius: 28.8px;
+
+          &::after {
+            position: absolute;
+            width: calc(100vw - 40px);
+            height: 1px;
+            background: #fff;
+            content: '';
+            bottom: -32px;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+
+        }
+
+        .programm {
+          border-bottom: 1px dashed #fff;
+        }
+
+      }
+
+      .number {
+        right: 20px;
+        top: 26px;
+        font-size: 14px;
+        font-weight: bold;
+        left: auto;
+      }
+
+    }
+
+  }
+
 }

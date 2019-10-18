@@ -28,3 +28,90 @@ $logined-theme: mat-light-theme($logined-primary, $logined-accent, $logined-warn
 .logined-theme {
   @include angular-material-theme($logined-theme);
 }
+
+//video-dialog styles
+
+.video-dialog {
+
+  .mat-dialog-container {
+    background-color: transparent;
+    padding: 0;
+    overflow: visible;
+  }
+
+  @media screen and (max-width: 768px) {
+    max-width: 100vw !important;
+  }
+
+}
+
+.class-super {
+  background: #000;
+}
+
+//share-menu styles
+
+.share-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .share-title {
+    display: none;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: normal;
+    letter-spacing: 0.93px;
+    text-align: center;
+    color: #afafaf;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    margin-right: 20px;
+    cursor: pointer;
+
+    img {
+      height: 2.7vw;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+  }
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 41px;
+
+    .share-title {
+      display: block;
+    }
+
+    button {
+      img {
+        height: auto;
+      }
+    }
+
+  }
+
+}
+
+// mat-dialog(pop-up)
+@media screen and (max-width: 768px) {
+
+  .cdk-overlay-container {
+
+    mat-dialog-container {
+      padding: 0;
+      border-radius: 0;
+    }
+
+  }
+
+}

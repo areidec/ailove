@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DialogFeedbackComponent } from 'src/app/shared/dialog/feedback/feedback.component';
 
@@ -31,22 +31,48 @@ export class FaqComponent implements OnInit {
   ];
   finHeight: string;
   activeLi: number;
+  mobileResolution: boolean;
   constructor(public dialog: MatDialog) {}
 
-  ngOnInit() {}
+  @HostListener('window:resize') onResize() {
+    window.innerWidth < 768 ? this.mobileResolution = true : this.mobileResolution = false;
+  }
+
+  ngOnInit() {
+    this.onResize();
+  }
 
   expand(index: number, { clientHeight }: HTMLElement) {
     this.activeLi = this.activeLi === index ? -1 : index;
     this.finHeight = clientHeight + window.innerWidth * 0.07 + 'px';
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogFeedbackComponent, {
-      width: '28.125vw',
-    });
+  expandMobile(index: number, { clientHeight }: HTMLElement, { clientHeight: top }: HTMLElement) {
+    this.activeLi = this.activeLi === index ? -1 : index;
+    this.finHeight = clientHeight + top + 10 + 'px';
+  }
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-    });
+  openDialog(): void {
+    if (this.mobileResolution) {
+      const dialogRef = this.dialog.open(DialogFeedbackComponent, {
+        width: '100vw',
+        maxWidth: '100vw',
+        height: 'auto',
+        minHeight: '100vh',
+        position: {top: '0px'}
+      });
+
+      dialogRef.afterClosed().subscribe((result) => {
+        console.log('The dialog was closed');
+      });
+    } else {
+      const dialogRef = this.dialog.open(DialogFeedbackComponent, {
+        width: '28.125vw',
+      });
+
+      dialogRef.afterClosed().subscribe((result) => {
+        console.log('The dialog was closed');
+      });
+    }
   }
 }

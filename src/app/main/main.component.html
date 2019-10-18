@@ -2,7 +2,7 @@
   <app-preloader></app-preloader>
 </div>
 <div class="parent" *ngIf="loaded" [ngClass]="defineCssState()" [@fade]>
-  <app-courses></app-courses>
-  <app-articles-header></app-articles-header>
+  <app-courses *ngIf="currentState.id !== 3"></app-courses>
+  <app-articles-header *ngIf="currentState.id !== 3"></app-articles-header>
   <router-outlet></router-outlet>
 </div>

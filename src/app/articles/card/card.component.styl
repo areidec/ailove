@@ -3,8 +3,9 @@
 :host {
   .card-parent {
     width: 26vw;
-    height: 15.5vw;
-    margin: 0 3.65vw 3.65vw 0;
+    height 100%;
+    // height: 15.5vw;
+    // margin: 0 3.65vw 3.65vw 0;
     // margin-bottom: 3.65vw;
     background: white;
     bsh();
@@ -15,8 +16,12 @@
       bshHover();
     }
 
-    &.big {
+    &.isnothome {
       height: 31vw;
+    }
+
+    &.big {
+      // height: 31vw;
 
       .content-wrap {
         height: 45%;
@@ -78,6 +83,7 @@
             justify-content: flex-start;
             align-items: center;
             overflow: hidden;
+            flex-wrap: wrap;
 
             .hashtag {
               margin-right: 1.05vw;
@@ -140,5 +146,96 @@
         }
       }
     }
+
+    @media screen and (max-width: 768px) {
+      margin: 0;
+      width: calc(100vw - 40px);
+      height: auto;
+      margin-bottom: 20px;
+
+      &.big {
+        height: auto;
+
+        .img-wrap {
+          height: auto;
+          min-height: 218px;
+        }
+
+}
+
+      .content-wrap {
+        height: auto;
+
+
+        .inner-cont {
+          height: auto;
+          width: 100%;
+          padding: 22px 22px 12px 22px;
+
+          .text-cont {
+            max-height: inherit;
+
+            .title {
+              font-size: 16px;
+              line-height: 1.38;
+              margin-bottom: 10px;
+            }
+
+            .hashtags {
+              font-size: 14px;
+              line-height: 1.21;
+              flex-wrap: wrap;
+              margin-bottom: 10px;
+
+              .hashtag {
+                font-size: 14px;
+                line-height: 1.21;
+                margin-right: 16px;
+                margin-bottom: 5px;
+              }
+
+            }
+
+          }
+
+          .data-cont {
+            height: auto;
+            border-top: 1px solid #e7e7e7;
+            padding-top: 14px;
+            font-size: 12px;
+
+            .activity {
+
+              .comments, .likes {
+                margin-left: 15px;
+
+                .svg-cont {
+                  height: 12px;
+                  width: 12px;
+                  margin-right: 7px;
+
+                  svg {
+                    height: 12px;
+                    width: 12px;
+                  }
+
+                }
+
+                .text {
+                  margin-left:0;
+                }
+
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
   }
 }

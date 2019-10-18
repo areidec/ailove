@@ -17,6 +17,7 @@ export class CategoryComponent implements OnInit {
   patternState: string;
   renderArticles: CurrentArticle[];
   renderArticlesArrs: (CurrentArticle[])[] = [];
+  renderArticlesShow: CurrentArticle[] = [];
   currentState: State;
   showArticlesIndex: number;
 
@@ -31,21 +32,38 @@ export class CategoryComponent implements OnInit {
       this.patternState = payload.id > 0 ? 'wide' : 'narrow';
       if (this.renderArticles) {
         this.renderArticlesArrs = this.groupArticles(this.renderArticles);
+        this.renderArticlesShow = this.showArticles();
         this.showArticlesIndex = 0;
       }
     });
     this.state.renderArticles.subscribe((newRenderArticles) => {
       this.renderArticles = newRenderArticles;
-      this.renderArticlesArrs = this.groupArticles(this.renderArticles);
+      this.renderArticlesArrs = this.groupArticles(newRenderArticles);
+      this.renderArticlesShow = this.showArticles();
       this.showArticlesIndex = 0;
     });
+  }
+
+  showArticles() {
+    let newArr = [];
+    this.renderArticlesArrs.forEach((el, index) => {
+      if(index <= this.showArticlesIndex) {
+        newArr = [...newArr, ...el];
+      }
+    });
+    return newArr;
+  }
+
+  onMoreArticles() {
+    this.showArticlesIndex++;
+    this.renderArticlesShow = this.showArticles();
   }
 
   groupArticles(arr: CurrentArticle[]) {
     const { patternState, showArticlesIndex } = this;
     const indexHelper = patternState === 'narrow' ? 5 : 8;
     const newArr = [];
-    arr.forEach((el, index) => {
+    arr.sort((a, b) => a.created_at > b.created_at ? -1 : 1).forEach((el, index) => {
       if (index % indexHelper === 0) {
         newArr.push(
           arr.filter(
@@ -83,12 +101,12 @@ export class CategoryComponent implements OnInit {
         };
   }
 
-  defineArticlesParentStyle(index: number) {
-    const { showArticlesIndex, patternState } = this;
-    return {
-      show: index <= showArticlesIndex,
-      wide: patternState === 'wide',
-      narrow: patternState === 'narrow',
-    };
-  }
+  // defineArticlesParentStyle(index: number) {
+  //   const { showArticlesIndex, patternState } = this;
+  //   return {
+  //     show: index <= showArticlesIndex,
+  //     wide: patternState === 'wide',
+  //     narrow: patternState === 'narrow',
+  //   };
+  // }
 }

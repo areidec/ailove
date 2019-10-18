@@ -58,7 +58,9 @@ export class FilterComponent {
     // Search logic
     this.toggleSearch = (newVal: boolean) => state.toggleSearch(newVal);
     this.resetSearch = () => state.emitSearch({ type: 'clear' });
-    this.removeTag = (tag: TagInner) => state.emitSearch({ type: 'remove', value: tag });
+    this.removeTag = (tag: TagInner) => {
+      state.emitSearch({ type: 'remove', value: tag });
+    };
     this.removeKeyWord = () => state.emitSearch({ type: 'keyword' });
     state.showSearch.subscribe((next: boolean) => {
       this.showSearch = next;

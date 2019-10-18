@@ -110,21 +110,6 @@ export class RegistrationService {
       placeholder: 'Дата рождения',
     },
     {
-      name: 'sex',
-      type: 'radio',
-      placeholder: 'Пол',
-      values: [
-        {
-          name: 'Мужской',
-          value: 'M',
-        },
-        {
-          name: 'Женский',
-          value: 'F',
-        },
-      ],
-    },
-    {
       name: 'phone',
       type: 'tel',
       placeholder: 'Мобильный телефон',

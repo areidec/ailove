@@ -55,7 +55,7 @@
   }
 
   >>>.articles-parent, >>>.article-parent {
-    min-height: 100vh;
+    min-height: calc(100vh - 3.75vw);
     position: absolute;
     right: 0;
     top: 3.75vw;
@@ -99,4 +99,93 @@
       transform: translateX(0) translateZ(0px) perspective(1px);
     }
   }
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+
+    >>>app-article {
+      position: relative;
+      height: auto;
+      transform: none;
+    }
+
+    >>>app-articles {
+      height: auto;
+      position: relative;
+    }
+
+    >>>.articles-parent, >>>.article-parent {
+      width: 100vw !important;
+      top: 60px;
+      height: auto;
+      position: relative;
+
+      &.articles {
+        top: 0;
+      }
+
+      &.courses {
+        display: none;
+      }
+
+    }
+
+    app-courses {
+      transform: translate(0);
+      position: relative;
+      height: auto;
+      order: 1;
+    }
+
+    >>>app-articles-wrap {
+      order: 2;
+    }
+
+    app-articles-header{
+      order: -1;
+    }
+
+    >>>.articles-parent {
+
+      &.initial {
+        width: 100vw;
+        opacity: 1;
+        top: 0;
+      }
+
+    }
+
+    &.error {
+      display: flex;
+      height: 100vh;
+    }
+
+    &.articles {
+      height: auto;
+
+      app-courses {
+        transform: translateX(-100%) translateZ(0px) perspective(1px);
+        position: absolute;
+      }
+
+      app-articles {
+        transform: translateX(0) translateZ(0px) perspective(1px);
+      }
+    }
+
+    &.courses {
+      app-courses {
+        transform: translateX(0vw) translateZ(0px) perspective(1px);
+      }
+
+      >>>app-articles-wrap {
+        position: absolute;
+      }
+    }
+
+  }
+
+
 }

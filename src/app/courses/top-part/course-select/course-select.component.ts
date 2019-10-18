@@ -15,5 +15,5 @@ export class CourseSelectComponent implements OnInit {
     this.coursesList = coursesCardsService.getCoursesFromApi();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

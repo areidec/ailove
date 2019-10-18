@@ -1,0 +1,12 @@
+stages:
+- build
+
+build:
+  script:
+  - cd /srv/www/google-bc-frontend/repo/$CI_COMMIT_REF_NAME
+  - git pull
+  - npm i
+  - CI=false ng build
+  tags:
+  - build
+  stage: build

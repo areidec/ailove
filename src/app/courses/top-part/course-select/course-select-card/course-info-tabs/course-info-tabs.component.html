@@ -1,0 +1,106 @@
+<mat-tab-group class="tabs">
+  <mat-tab label="МОДУЛИ КУРСА">
+    <ul class="modules">
+      <li class="module-wrap"
+        *ngFor="let module of modules; let ind = index"
+        [ngClass]="{ active: ind === this.activeLi && this.activeBlock === 'base' }"
+        [ngStyle]="{ height: ind === this.activeLi && this.activeBlock === 'base' ? finHeight : top_base.clientHeight + 'px' }"
+      >
+        <div class="top" (click)="expand(ind, about,  'base',top_base.clientHeight)" #top_base>
+          <div class="arrow">
+            <svg
+              width="12px"
+              height="8px"
+              viewBox="0 0 12 8"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.200000003">
+                <g transform="translate(-69.000000, -497.000000)" fill="#415061">
+                  <g transform="translate(0.000000, -7.000000)">
+                    <g transform="translate(69.000000, 317.000000)">
+                      <polygon
+                        transform="translate(6.000000, 190.700000) scale(1, -1) translate(-6.000000, -190.700000) "
+                        points="10.6 187 6 191.6 1.4 187 0 188.4 6 194.4 12 188.4"
+                      ></polygon>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="header">{{ module.name }}</div>
+          <div class="duration">{{ module.duration }} мин.</div>
+        </div>
+        <div class="about" [innerHTML]="module.about" #about></div>
+      </li>
+    </ul>
+    <div class="buttons">
+      <button mat-flat-button color="accent" class="start" [ngStyle]="{ backgroundColor: color }" (click)="toggleRegistration(true)">
+        начать обучение
+      </button>
+      <div class="hide" [ngStyle]="{ color: color }" (click)="removeActive()">свернуть</div>
+    </div>
+  </mat-tab>
+  <mat-tab label="ТЕСТЫ">
+    <ul class="modules">
+      <li class="module-wrap">
+        <div class="top" [ngStyle]="{ cursor: 'default' }">
+          <div class="header">Итоговый тест</div>
+          <div class="duration">{{ test.duration }} мин.</div>
+        </div>
+      </li>
+    </ul>
+    <div class="buttons">
+      <button mat-flat-button color="accent" class="start" [ngStyle]="{ backgroundColor: color }" (click)="toggleRegistration(true)">
+        начать обучение
+      </button>
+      <div class="hide" [ngStyle]="{ color: color }" (click)="removeActive()">свернуть</div>
+    </div>
+  </mat-tab>
+  <mat-tab label="ДОП. МОДУЛИ">
+    <ul class="modules">
+      <li class="module-wrap"
+          *ngFor="let extraModules of extraModules; let ind = index"
+          [ngClass]="{ active: ind === this.activeLi && this.activeBlock === 'extra' }"
+          [ngStyle]="{ height: ind === this.activeLi && this.activeBlock === 'extra' ? finHeight : top_base.clientHeight + 'px' }"
+      >
+        <div class="top" (click)="expand(ind, about,  'extra',top_base.clientHeight)" #top_base>
+          <div class="arrow">
+            <svg
+              width="12px"
+              height="8px"
+              viewBox="0 0 12 8"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.200000003">
+                <g transform="translate(-69.000000, -497.000000)" fill="#415061">
+                  <g transform="translate(0.000000, -7.000000)">
+                    <g transform="translate(69.000000, 317.000000)">
+                      <polygon
+                        transform="translate(6.000000, 190.700000) scale(1, -1) translate(-6.000000, -190.700000) "
+                        points="10.6 187 6 191.6 1.4 187 0 188.4 6 194.4 12 188.4"
+                      ></polygon>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="header">{{ extraModules.name }}</div>
+          <div class="duration">{{ extraModules.duration }} мин.</div>
+        </div>
+        <div class="about" [innerHTML]="extraModules.about" #about></div>
+      </li>
+    </ul>
+    <div class="buttons">
+      <button mat-flat-button color="accent" class="start" [ngStyle]="{ backgroundColor: color }" (click)="toggleRegistration(true)">
+        начать обучение
+      </button>
+      <div class="hide" [ngStyle]="{ color: color }" (click)="removeActive()">свернуть</div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

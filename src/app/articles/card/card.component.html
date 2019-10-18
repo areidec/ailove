@@ -1,4 +1,7 @@
-<div class="card-parent" [ngClass]="{ big: big }" [routerLink]="[article.slug]">
+<div class="card-parent" 
+  [ngClass]="{ big: big, isnothome: isNotHome }" 
+  [routerLink]="['', article.slug]"
+>
   <div class="img-wrap" *ngIf="big">
     <img [src]="article.preview_image" alt="" />
   </div>
@@ -7,9 +10,9 @@
       <div class="text-cont">
         <div class="title" [innerHTML]="article.title"></div>
         <div class="hashtags">
-          <span
+          <span (click)="toggleTag($event, tag)"
             class="hashtag"
-            *ngFor="let tag of article.tags"
+            *ngFor="let tag of article.tags; let idx = index"
             [innerHTML]="'#' + tag.text"
           ></span>
         </div>

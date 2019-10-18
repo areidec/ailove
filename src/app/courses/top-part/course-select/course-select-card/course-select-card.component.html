@@ -1,67 +1,156 @@
-<div
-  class="card-parent"
-  (mouseenter)="hovered = true"
-  (mouseleave)="hovered = false"
-  [ngClass]="{ hover: hovered && !active, active: active }"
-  *ngIf="!userLogined || (userLogined && userCourse.id !== card.id)"
-  [ngStyle]="{ pointerEvents: userLogined ? 'none' : 'all', opacity: userLogined ? 0.5 : 1 }"
->
-  <div class="card-overlay" [ngStyle]="{ backgroundColor: card.backgroundColor }"></div>
-  <div class="card-inner">
-    <div class="number" [ngStyle]="{ color: card.backgroundColor }">
-      <div class="inner-numb" [@fade] *ngIf="!hovered && !active">0{{ index + 1 }}</div>
-      <div class="inner-play" [@fade] *ngIf="hovered || active">
-        <svg
-          viewBox="0 0 47 54"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-        >
-          <g stroke="none" stroke-width="1">
-            <g
-              class="play"
-              transform="translate(-285.000000, -129.000000)"
-              stroke="#FFFFFF"
-              stroke-width="2"
-            >
-              <g>
-                <g transform="translate(232.000000, 81.000000)">
-                  <polygon
-                    transform="translate(80.650635, 75.000000) rotate(90.000000) translate(-80.650635, -75.000000) "
-                    points="80.6506351 53.3493649 105.650635 96.6506351 55.6506351 96.6506351"
-                  ></polygon>
+<div *ngIf="!this.mobileResolution">
+  <div
+    class="card-parent"
+    (mouseenter)="hovered = true"
+    (mouseleave)="hovered = false"
+    [ngClass]="{ hover: hovered && !active, active: active }"
+    *ngIf="!userLogined || (userLogined && userCourse.id !== card.id)"
+  >
+    <div class="card-overlay" [ngStyle]="{ backgroundColor: card.backgroundColor }"></div>
+    <div class="card-inner">
+      <div class="number" [ngStyle]="{ color: card.backgroundColor }">
+        <div class="inner-numb" [@fade] *ngIf="!hovered && !active">0{{ index + 1 }}</div>
+        <div class="inner-play" [@fade] *ngIf="hovered || active" (click)="openVideo(card.youtube_video_url)">
+          <svg
+            viewBox="0 0 47 54"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <g stroke="none" stroke-width="1">
+              <g
+                class="play"
+                transform="translate(-285.000000, -129.000000)"
+                stroke="#FFFFFF"
+                stroke-width="2"
+              >
+                <g>
+                  <g transform="translate(232.000000, 81.000000)">
+                    <polygon
+                      transform="translate(80.650635, 75.000000) rotate(90.000000) translate(-80.650635, -75.000000) "
+                      points="80.6506351 53.3493649 105.650635 96.6506351 55.6506351 96.6506351"
+                    ></polygon>
+                  </g>
                 </g>
               </g>
             </g>
-          </g>
-        </svg>
+          </svg>
+        </div>
+      </div>
+      <div class="info">
+        <h2 class="header" [innerHTML]="card.name"></h2>
+        <div class="about" [innerHTML]="card.about"></div>
+      </div>
+      <button mat-stroked-button class="button"
+        (click)="toggleRegistration(true)"
+        *ngIf="!userLogined"
+      >
+        Выбрать
+      </button>
+      <button mat-stroked-button class="button"
+        (click)="courseDisable()"
+        *ngIf="userLogined"
+      >
+        Выбрать
+      </button>
+    </div>
+    <div class="bottom-info" *ngIf="hovered && !active" [@fadeInOut]>
+      <div class="about" [ngStyle]="{ color: card.color }">
+        Курс состоит из {{ card.modules.length }} модулей <br />
+        Общая продолжительность: {{ courseDuration.hours }}:{{ courseDuration.minutes }}
+      </div>
+      <div class="programm">
+        <span (click)="setActive()">программа курса</span>
       </div>
     </div>
-    <div class="info">
-      <h2 class="header" [innerHTML]="card.name"></h2>
-      <div class="about" [innerHTML]="card.about"></div>
-    </div>
-    <button mat-stroked-button class="button">Выбрать</button>
+    <app-course-select-info
+      [toggleRegistration]="toggleRegistration"
+      [modules]="card.modules"
+      [extraModules]="card.extraModules"
+      [test]="card.test"
+      *ngIf="active"
+      [@courseFade]
+      [color]="card.backgroundColor"
+    ></app-course-select-info>
   </div>
-  <div class="bottom-info" *ngIf="hovered && !active" [@fadeInOut]>
-    <div class="about" [ngStyle]="{ color: card.color }">
-      Курс состоит из {{ card.modules.length }} модулей <br />
-      Общая продолжительность: {{ courseDuration.hours }}:{{ courseDuration.minutes }}
-    </div>
-    <div class="programm">
-      <span (click)="setActive()">программа курса</span>
-    </div>
-  </div>
-  <app-course-select-info
-    [modules]="card.modules"
-    [extraModules]="card.extraModules"
-    [test]="card.test"
-    *ngIf="active"
-    [@courseFade]
-    [color]="card.backgroundColor"
-  ></app-course-select-info>
+
+  <app-user-course
+    *ngIf="userLogined && userCourse.id === card.id"
+    [ngStyle]="{ width: '100%' }"
+  ></app-user-course>
 </div>
 
-<app-user-course
-  *ngIf="userLogined && userCourse.id === card.id"
-  [ngStyle]="{ width: '100%' }"
-></app-user-course>
+<!--Render block bellow at mobile devices 768px-->
+<div *ngIf="this.mobileResolution">
+  <div
+    class="card-parent"
+    (mouseenter)="hovered = true"
+    (mouseleave)="hovered = false"
+    [ngClass]="{ hover: true && !active, active: active }"
+    *ngIf="!userLogined || (userLogined && userCourse.id !== card.id)"
+    [ngStyle]="{ pointerEvents: userLogined ? 'none' : 'all', opacity: userLogined ? 0.5 : 1 }"
+  >
+    <div class="card-overlay" [ngStyle]="{ backgroundColor: card.backgroundColor }"></div>
+    <div class="card-inner">
+      <div class="number">
+        <div class="inner-play" [@fade] (click)="openVideo(card.youtube_video_url)">
+          <svg
+            viewBox="0 0 47 54"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <g stroke="none" stroke-width="1">
+              <g
+                class="play"
+                transform="translate(-285.000000, -129.000000)"
+                stroke="#FFFFFF"
+                stroke-width="2"
+              >
+                <g>
+                  <g transform="translate(232.000000, 81.000000)">
+                    <polygon
+                      transform="translate(80.650635, 75.000000) rotate(90.000000) translate(-80.650635, -75.000000) "
+                      points="80.6506351 53.3493649 105.650635 96.6506351 55.6506351 96.6506351"
+                    ></polygon>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="number-mobile" [ngStyle]="{ color: card.color }">
+        <div class="inner-numb">0{{ index + 1 }}</div>
+      </div>
+      <div class="info">
+        <h2 class="header" [innerHTML]="card.name"></h2>
+        <div class="about" [innerHTML]="card.about"></div>
+      </div>
+      <button mat-stroked-button class="button" (click)="toggleRegistration(true)"
+              [ngStyle]="{ color: card.backgroundColor }">Выбрать</button>
+      <mat-divider></mat-divider>
+    </div>
+    <div class="bottom-info" [@fadeInOut]>
+      <div class="about" [ngStyle]="{ color: card.color }">
+        Курс состоит из {{ card.modules.length }} модулей <br />
+        Общая продолжительность: {{ courseDuration.hours }}:{{ courseDuration.minutes }}
+      </div>
+      <div class="programm">
+        <span (click)="setActive()">программа курса</span>
+      </div>
+    </div>
+    <app-course-info-tabs
+      [toggleRegistration]="toggleRegistration"
+      *ngIf="active"
+      [@courseFade]
+      [modules]="card.modules"
+      [extraModules]="card.extraModules"
+      [test]="card.test"
+      [card]="card"
+    ></app-course-info-tabs>
+  </div>
+
+  <app-user-course
+    *ngIf="userLogined && userCourse.id === card.id"
+    [ngStyle]="{ width: '100%' }"
+  ></app-user-course>
+</div>

@@ -77,6 +77,11 @@ $layout-bg = rgba(#34393e, 0.6);
         height: 7.5vw;
         background-color: $yellow;
         color: white;
+
+        .close {
+          display: none;
+        }
+
       }
 
       .title {
@@ -149,4 +154,110 @@ $layout-bg = rgba(#34393e, 0.6);
       }
     }
   }
+
+  @media screen and (max-width: 768px) {
+
+    .inner-cont {
+
+      .close-helper {
+        display: none;
+      }
+
+      .registration-form-wrap {
+        width: 100%;
+
+        .registration-header {
+          height: auto;
+          display:flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .title {
+            font-size: 22px;
+            letter-spacing: -0.46px;
+            color: #415061;
+            padding: 18px 0;
+            line-height: normal;
+            padding-left: 20px;
+          }
+
+          .close {
+            display: block;
+            margin-right: 20px;
+          }
+
+        }
+
+
+        .registration-content {
+          height: auto;
+
+          form {
+            padding: 18px 20px;
+            overflow-x: hidden;
+
+            .error {
+              font-size: 10px !important;
+            }
+
+            .input-wrap  {
+              width: 100% !important;
+
+              .error {
+                font-size: 10px !important;
+              }
+
+              >>>mat-form-field.mat-form-field-appearance-legacy {
+                .mat-form-field-wrapper {
+                  .mat-form-field-subscript-wrapper {
+                    margin-top: 5px !important;
+                    font-size: 10px;
+
+                    .error {
+                      font-size: 10px;
+                    }
+
+                  }
+                }
+              }
+
+              .mat-checkbox {
+                font-size: 14px;
+
+                >>>.mat-checkbox-layout {
+                  white-space: pre-wrap;
+
+                  .mat-checkbox-inner-container {
+                    margin: 0;
+                    margin-right: 8px;
+                  }
+
+                }
+
+
+              }
+
+            }
+
+            * {
+              font-size: 18px;
+            }
+
+            .mat-flat-button {
+              margin-top: 45px;
+              width: 100%;
+              height: 48px !important;
+              background: #fcc624;
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
 }

@@ -1,0 +1,114 @@
+@import ('../../../../libs/css/params.styl');
+
+:host {
+  padding: 2.5vw 2vw 2vw;
+  display: block;
+
+  .header {
+    font-family: Roboto;
+    font-weight: 200;
+    fzd(28);
+    margin-bottom: 2vw;
+
+    .close {
+      display: none;
+    }
+
+  }
+
+  .content-wrap {
+    width: 100%;
+
+    .info {
+      color: #415061;
+      fzd(16);
+      lhd(22);
+      font-family: Roboto;
+      font-weight: 400;
+
+      span {
+        font-weight: 700;
+      }
+    }
+
+    .full-width {
+      width: 100%;
+    }
+  }
+
+  .buttons-wrap {
+    margin-top: 1vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    font-family: Roboto;
+    font-weight: 400;
+    fzd(18);
+    margin-bottom: 0.5vw;
+
+    .link-to {
+      color: #0493E7;
+      opacity: 0.5;
+      transition: opacity 0.25s $OutCubic;
+
+      &:hover {
+        opacity: 1;
+        cursor: pointer;
+        transition: opacity 0.25s $InCubic;
+      }
+    }
+
+    button {
+      width: 45%;
+      height: 2.7vw;
+      color: white;
+      fzd(13);
+      text-transform: uppercase;
+    }
+
+    &.second {
+      justify-content: flex-start;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 0;
+
+    .header {
+      font-size: 22px;
+      font-weight: normal;
+      line-height: normal;
+      letter-spacing: -0.46px;
+      margin: 18px 0 22px 20px;
+      color: #415061;
+      display: flex;
+      justify-content: space-between;
+
+      .close {
+        display: block;
+        margin-right: 20px;
+      }
+
+    }
+
+    .content-wrap {
+      margin: 0;
+      padding: 0;
+
+      .info {
+        font-size: 16px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.38;
+        letter-spacing: normal;
+        width: calc(100% - 40px);
+        margin-left: 20px;
+      }
+
+    }
+
+
+  }
+
+}

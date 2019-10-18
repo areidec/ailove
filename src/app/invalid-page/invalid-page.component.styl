@@ -1,0 +1,170 @@
+:host {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #fafafa;
+
+  .wrapper {
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h1 {
+      color: #415061;
+      display: block;
+      font-size: 30vh;
+      margin: 0;
+      margin-bottom: 5vh;
+      border-bottom: 1px solid #000;
+    }
+
+    a {
+      font-weight: bold;
+      color: #415061;
+      text-decoration: none;
+    }
+
+
+  }
+
+  .background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+
+    .box {
+      position: absolute;
+      opacity: 0.8;
+      box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.1);
+      width: 23.4%;
+    }
+
+    .mid-box {
+      height: 68.5%;
+      background: #b5daef;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .mid-top-box {
+      display: none;
+    }
+
+    .left-top-box {
+      background: #60747a;
+      left: 8.6%;
+      top: 0;
+      height: 50.2%;
+    }
+
+    .right-top-box {
+      background: #ffd144;
+      right: 8.6%;
+      top: 0;
+      height: 23.2%;
+    }
+
+    .left-bot-box {
+      background: #d63a27;
+      left: 8.6%;
+      bottom: 0;
+      height: 38.7%;
+    }
+
+    .mid-bot-box {
+      background: #f37b47;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      height: 10.4%;
+    }
+
+    .right-bot-box {
+      background: #7aad42;
+      right: 8.6%;
+      bottom: 0;
+      height: 65.6%;
+    }
+
+  }
+
+  @media screen and (max-width: 768px) {
+
+    .wrapper {
+
+      p {
+        width: calc(100% - 40px);
+        text-align: center;
+      }
+
+    }
+
+    .background {
+
+      .left-top-box {
+        width: 11%;
+        height: 46.1%;
+        left: 0;
+      }
+
+      .mid-box {
+        width: 49.8%;
+        height: 46.1%;
+        top: 26.8%;
+      }
+
+      .mid-top-box {
+        background: #d63a27;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 49.8%;
+        height: 10%;
+      }
+
+      .right-top-box {
+        width: 12.2%;
+        height: 36.1%;
+        right: 0;
+      }
+
+      .left-bot-box {
+        background: #d63a27;
+        left: 0%;
+        bottom: 0;
+        height: 28;
+        width: 11.4%;
+      }
+
+      .mid-bot-box {
+        background: #f37b47;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        height: 4%;
+        width: 49.8%;
+      }
+
+      .right-bot-box {
+        background: #7aad42;
+        right: 0%;
+        bottom: 0;
+        height: 35.6%;
+        width: 12%;
+
+      }
+
+    }
+
+  }
+
+}

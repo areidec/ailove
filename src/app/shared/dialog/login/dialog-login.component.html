@@ -24,25 +24,31 @@
   </form>
 </div> -->
 
-<div mat-dialog-title class="header">Вход</div>
-<div mat-dialog-content class="content-wrap">
-  <mat-form-field class="full-width" [style.fontSize]="'0.9375vw'">
-    <input matInput placeholder="Email" [(ngModel)]="email" />
-  </mat-form-field>
-  <mat-form-field class="full-width" [style.fontSize]="'0.9375vw'">
-    <input type="password" matInput placeholder="Введите пароль" [(ngModel)]="password" />
-  </mat-form-field>
-  <div [ngStyle]="{ width: '100%' }" *ngIf="errorsArr.length > 0">
-    <mat-error class="error" *ngFor="let item of errorsArr">
-      {{ item }}
-    </mat-error>
+<form action="">
+  <div mat-dialog-title class="header">Вход
+    <div class="close" (click)="this.dialogRef.close()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+    </div>
   </div>
-</div>
-<div mat-dialog-actions class="buttons-wrap">
-  <div class="link-to" (click)="openResendPassword()">Напомнить пароль</div>
-  <button mat-flat-button color="accent" class="main-button" (click)="loginUser()">Войти</button>
-</div>
-<div mat-dialog-actions class="buttons-wrap second">
-  <div [ngStyle]="{ marginRight: '0.5vw' }">Еще не зарегистрированы?</div>
-  <div class="link-to">Регистрация</div>
-</div>
+  <div mat-dialog-content class="content-wrap">
+    <mat-form-field class="full-width" [style.fontSize]="'0.9375vw'">
+      <input name="mail" matInput placeholder="Email" [(ngModel)]="email" />
+    </mat-form-field>
+    <mat-form-field class="full-width" [style.fontSize]="'0.9375vw'">
+      <input type="password" name="pass" matInput placeholder="Введите пароль" [(ngModel)]="password" />
+    </mat-form-field>
+    <div [ngStyle]="{ width: '100%' }" *ngIf="errorsArr.length > 0">
+      <mat-error class="error" *ngFor="let item of errorsArr">
+        {{ item }}
+      </mat-error>
+    </div>
+  </div>
+  <div mat-dialog-actions class="buttons-wrap">
+    <div class="link-to" (click)="openResendPassword()">Напомнить пароль</div>
+    <button mat-flat-button color="accent" class="main-button" (click)="loginUser()" type="submit">Войти</button>
+  </div>
+  <div mat-dialog-actions class="buttons-wrap second">
+    <div [ngStyle]="{ marginRight: '0.5vw' }">Еще не зарегистрированы?</div>
+    <div class="link-to" (click)="toggleRegistration(true)">Регистрация</div>
+  </div>
+</form>

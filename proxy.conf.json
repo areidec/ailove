@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "https://empty-response.google-bc-backend.ndev.ailove.ru",
+    "target": "https://dev.google-bc-backend.ndev.ailove.ru",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,

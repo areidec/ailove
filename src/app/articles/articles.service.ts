@@ -3,9 +3,14 @@ import { Injectable } from '@angular/core';
 import { ArticleFilter, SlugMapEl, CurrentArticle } from './article.model';
 import { Subject, BehaviorSubject, ReplaySubject } from 'rxjs';
 import { Tag, TagInner } from './filter/search/search.model';
+import { State } from '../main/state.model';
+import {StateService} from '../main/main.service';
+
+
 
 @Injectable()
 export class ArticlesService {
+  public currentState: State;
   public currentFilter: ReplaySubject<string> = new ReplaySubject<string>();
   public renderArticles: ReplaySubject<CurrentArticle[]> = new ReplaySubject<CurrentArticle[]>();
   public currentArticleSubscribe: ReplaySubject<CurrentArticle> = new ReplaySubject<
@@ -32,7 +37,13 @@ export class ArticlesService {
     value?: TagInner;
   }>();
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private mainState: StateService) {
+
+    this.currentState = mainState.getCurrentState();
+    mainState.activeState.subscribe((payload: State) => {
+      this.currentState = payload;
+    });
+
     this.filtersObs = new BehaviorSubject<string[]>(this.getFilters());
     this.selectedTagsObs.subscribe((selected: Tag) => {
       const processKeyword = (articles: CurrentArticle[], keyword: string) => {
@@ -82,6 +93,7 @@ export class ArticlesService {
   callToApi() {
     this.httpClient.get('/api/articles').subscribe((res: CurrentArticle[]) => {
       const articles = [...res];
+
       articles.forEach((el) => {
         const filter = el.category;
         Object.assign(el, {
@@ -93,6 +105,8 @@ export class ArticlesService {
       this.filtersObs.next(this.getFilters());
       this.tagsObs.next(this.getTags());
       this.applyFilter();
+    }, error => {
+      console.log('error', error);
     });
   }
 
@@ -128,6 +142,9 @@ export class ArticlesService {
     this.currentArticleSlug = url;
     return this.httpClient.get(`/api/articles${url}`).subscribe((res: CurrentArticle) => {
       this.currentArticleSubscribe.next(new CurrentArticle({ ...res }));
+    }, error => {
+      this.mainState.setActiveState(3);
+      console.log('errrorrrrr');
     });
   }
 

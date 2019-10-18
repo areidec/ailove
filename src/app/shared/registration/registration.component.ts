@@ -15,7 +15,7 @@ export class RegistrationComponent implements OnInit {
   public userData: UserData;
   public inputs: RegistrationInputField[];
   public userDataForm: FormGroup;
-  public maxDate = new Date(2001, 1, 1);
+  public maxDate = new Date();
   private hideState = {
     password: true,
     password_repeat: true,

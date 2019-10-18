@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, HostListener } from '@angular/core';
 import { ArticlesService } from '../../articles.service';
 import { Tag, TagInner } from './search.model';
 import { ReplaySubject, Subscription } from 'rxjs';
@@ -19,6 +19,12 @@ export class SearchComponent implements OnInit, OnDestroy {
   public keywordObs: ReplaySubject<string>;
   public renderArticles: CurrentArticle[];
   public keyword = '';
+  private defineMobile = false;
+
+  @HostListener('window:resize', ['$event'])
+    onResize(event) {
+      this.isMob();
+  }
 
   private subscriptions: Subscription[];
 
@@ -120,6 +126,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   setNewIndex(index: number) {
+    console.log('change index', index)
     this.currentIndex = index;
     this.clearTags();
   }
@@ -134,6 +141,14 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.toggleSearch(false);
   }
 
+  private isMob() {
+    if (window.innerWidth < 768) {
+      this.defineMobile = true;
+    } else {
+      this.defineMobile = false;
+    }
+  }
+
   tagSelected = (tag: TagInner) => this.selectedTags.some((el) => el.text === tag.text);
 
   getItemsFoundInnerHTML() {
@@ -143,6 +158,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     const getMaterialsWord = (num: number) => {
       if (num % 10 === 1) {
         return 'материал';
+      } else if ( this.defineMobile ) {
+        return  '';
       } else if ((num % 10 >= 5 && num % 10 <= 9) || num % 10 === 0) {
         return 'материалов';
       } else {
@@ -155,6 +172,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     return `${foundWord}:&nbsp;${length}&nbsp;${materialsWord}`;
   }
 
+
   ngOnInit() {
     setTimeout(() => {
       this.keyword = '';
@@ -164,9 +182,11 @@ export class SearchComponent implements OnInit, OnDestroy {
         tags: this.selectedTags,
       });
     });
+    this.isMob();
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach((el) => el.unsubscribe());
   }
+
 }

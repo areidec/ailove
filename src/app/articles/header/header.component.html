@@ -1,26 +1,39 @@
 <div class="header-parent" [ngClass]="defineCssState()">
-  <div class="logo-wrap">
+  <div class="logo-wrap"
+       [class.short]="this.currentState.id === 2 && isMobile()"
+       (click)="changeState(0)"
+  >
     <div class="logo">
-      <img src="../../../assets/articles/header/logo.svg" alt="" />
+      <img src="../../../assets/articles/header/logo.svg" alt="" routerLink="/" />
     </div>
   </div>
-  <div class="right-side-content">
+  <div class="header-back"></div>
+  <div class="right-side-content" [class.opened]="burgerState" [class.mobileRes]="mobileResolution">
     <div class="list">
-      <a class="text" (click)="changeState(1)">Курсы</a>
-      <a class="text" (click)="changeState(2)">Статьи и&nbsp;истории успеха</a>
+      <a class="text" (click)="changeState(1)" *ngIf="!mobileResolution">Курсы</a>
+      <a class="text" (click)="changeState(1); burgerState ? burgerToggleState() : '' " *ngIf="mobileResolution && !userLogined">Курсы</a>
+      <a class="text" href="https://www.business-class.pro/modules" *ngIf="mobileResolution && userLogined">Курсы</a>
+      <a class="text" routerLink="/" (click)="changeState(2); burgerState ? burgerToggleState() : '' ">Статьи и&nbsp;истории успеха</a>
     </div>
     <div class="login">
-      <div class="login-btn" (click)="openDialog()" *ngIf="!userLogined">
+      <div class="login-btn" (click)="openDialog(); burgerState ? burgerToggleState() : '' " *ngIf="!userLogined">
         <div class="login-icon">
           <img src="../../../assets/articles/header/lock.svg" alt="" />
         </div>
         <span class="text">{{ !userLogined ? 'Вход' : 'ЛК' }}</span>
       </div>
-      <a href="https://google.com" target="_blank" *ngIf="userLogined" rel="noopener noreferrer">
-        <div class="login-btn">
-          <span class="text">{{ !userLogined ? 'Вход' : 'ЛК' }}</span>
+      <div class="login-btn" (click)="logoutUser(); burgerState ? burgerToggleState() : '' " *ngIf="userLogined">
+        <div class="login-icon">
+          <img src="../../../assets/articles/header/lock.svg" alt="" />
         </div>
-      </a>
+        <span class="text">Выйти</span>
+      </div>
+      <div class="login-btn" *ngIf="userLogined">
+        <a href="https://www.business-class.pro/modules" rel="noopener noreferrer">
+          <span class="text">{{ !userLogined ? 'Вход' : 'ЛК' }}</span>
+        </a>
+      </div>
+
       <button
         mat-flat-button
         color="accent"
@@ -35,13 +48,29 @@
         color="accent"
         class="study-btn-mat"
         *ngIf="userLogined"
-        href="http://google.com"
-        target="_blank"
+        href="https://www.business-class.pro/modules"
         rel="noopener noreferrer"
       >
         Продолжить обучение
       </a>
     </div>
+  </div>
+  <button class="burger" [class.opened]="burgerState" (click)="burgerToggleState()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="overlay" [class.opened]="burgerState" (click)="burgerToggleState()"></div>
+  <div class="log-in-btn" *ngIf="this.currentState.id === 2">
+    <button
+      mat-flat-button
+      color="accent"
+      class="study-btn-mat"
+      (click)="toggleRegistration(true)"
+      *ngIf="!userLogined"
+    >
+      Начать обучение
+    </button>
   </div>
 </div>
 <app-registration *ngIf="!userLogined && showRegistration" [@slideIn]></app-registration>

@@ -33,6 +33,14 @@
       justify-content: center;
       align-items: center;
     }
+
+    @media screen and (max-width: 768px) {
+      width: 100vw;
+      height: auto;
+      position: relative;
+      overflow: visible;
+    }
+
   }
 
   .button {
@@ -115,4 +123,11 @@
       }
     }
   }
+
+  @media screen and (max-width: 768px) {
+    .button {
+      display: none;
+    }
+  }
+
 }

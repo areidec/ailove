@@ -7,8 +7,8 @@
       (click)="setFilter(filter)"
       class="filter-item"
       [ngClass]="defineActiveFilter(filter)"
-      >{{ filter }}</span
-    >
+      >{{ filter }}
+    </span>
   </div>
   <div class="filters-list" *ngIf="searchTags.length > 0 || hasKeyword()">
     <span (filter)="(searchCategory)" class="filter-item active">{{ searchCategory }}</span>

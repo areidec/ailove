@@ -1,0 +1,10 @@
+<h2 class="title">преподаватели</h2>
+<ngx-slick-carousel class="carousel"
+        #slickModal="slick-carousel"
+              [config]="slideConfig" >
+  <div ngxSlickItem  class="slide"
+       *ngFor="let teacherCard of teachers; let i = index"
+  >
+    <app-teacher-card [teacher]="teacherCard"></app-teacher-card>
+  </div>
+</ngx-slick-carousel>

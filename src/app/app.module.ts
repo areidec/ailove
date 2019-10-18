@@ -36,6 +36,7 @@ import { CardComponent } from './articles/card/card.component';
 import { HeaderComponent } from './articles/header/header.component';
 import { DialogLoginComponent } from './shared/dialog/login/dialog-login.component';
 import { DialogFeedbackComponent } from './shared/dialog/feedback/feedback.component';
+import { DialogCourseDisableComponent } from './shared/dialog/course-disable/course-disable.component';
 import { DialogResendPasswordComponent } from './shared/dialog/resend-password/dialog-resend-password.component';
 import { DialogResendPasswordSuccessComponent } from './shared/dialog/resend-password-success/dialog-resend-password-success.component';
 import { FilterComponent } from './articles/filter/filter.component';
@@ -60,6 +61,14 @@ import { FaqComponent } from './courses/faq/faq.component';
 import { SearchComponent } from './articles/filter/search/search.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { PreloaderComponent } from './preloader/preloader.component';
+import { ThnxForFeedbackComponent } from './shared/dialog/thnx-for-feedback/thnx-for-feedback.component';
+import { InvalidPageComponent } from './invalid-page/invalid-page.component';
+import { CourseInfoTabsComponent } from './courses/top-part/course-select/course-select-card/course-info-tabs/course-info-tabs.component';
+import { TeachersSliderComponent } from './courses/teachers-slider/teachers-slider.component';
+
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { VideoDialogComponent } from './shared/dialog/video-dialog/video-dialog.component';
+import { ShareModule } from '@ngx-share/core';
 
 @NgModule({
   declarations: [
@@ -85,6 +94,7 @@ import { PreloaderComponent } from './preloader/preloader.component';
     DialogFeedbackComponent,
     DialogResendPasswordComponent,
     DialogResendPasswordSuccessComponent,
+    DialogCourseDisableComponent,
     ArticlesWrapComponent,
     ArticleComponent,
     CommentsComponent,
@@ -93,6 +103,11 @@ import { PreloaderComponent } from './preloader/preloader.component';
     SearchComponent,
     FooterComponent,
     PreloaderComponent,
+    ThnxForFeedbackComponent,
+    InvalidPageComponent,
+    CourseInfoTabsComponent,
+    TeachersSliderComponent,
+    VideoDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,6 +130,8 @@ import { PreloaderComponent } from './preloader/preloader.component';
     MatCheckboxModule,
     MatTabsModule,
     MatChipsModule,
+    SlickCarouselModule,
+    ShareModule
   ],
   providers: [
     StateService,
@@ -131,6 +148,10 @@ import { PreloaderComponent } from './preloader/preloader.component';
     DialogLoginComponent,
     DialogResendPasswordComponent,
     DialogResendPasswordSuccessComponent,
+    DialogResendPasswordSuccessComponent,
+    DialogCourseDisableComponent,
+    ThnxForFeedbackComponent,
+    VideoDialogComponent
   ],
 })
 export class AppModule {}

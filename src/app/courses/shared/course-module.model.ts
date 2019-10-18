@@ -6,6 +6,7 @@ export class CourseModule {
   public count?: number;
   public completed?: number;
   public info?: {};
+  public state?: string;
 
   public constructor(fields: {
     name: string;
@@ -15,6 +16,7 @@ export class CourseModule {
     count?: number;
     completed?: number;
     info?: {};
+    state?: string;
   }) {
     if (fields) {
       Object.assign(this, fields);

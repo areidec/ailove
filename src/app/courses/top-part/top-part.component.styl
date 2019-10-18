@@ -26,6 +26,7 @@
   .background {
     background-image: url('../../../assets/courses/main-bg.jpg');
     background-position: 50% 50%;
+    background-repeat: no-repeat;
 
     &.narrow {
       background-size: auto 100%;
@@ -46,6 +47,10 @@
       background-color: #202020;
       opacity: 0.4;
     }
+
+    &.white {
+      background-color: #fff;
+    }
   }
 
   .content {
@@ -53,4 +58,44 @@
     width: 100%;
     height: 100vh;
   }
+
+  @media screen and (max-width: 768px) {
+
+    height: inherit;
+    position: relative;
+
+    &.initial {
+      width: 100vw;
+
+      position: relative;
+      height: auto;
+    }
+
+    .content {
+      height: auto;
+
+      position: relative;
+    }
+
+    &.courses {
+      width: 100%;
+    }
+
+    .background {
+      display: none;
+    }
+
+    .overlay {
+      &.gray {
+        background-color: #445567;
+      }
+
+      &.black {
+        display: none;
+      }
+
+    }
+
+  }
+
 }

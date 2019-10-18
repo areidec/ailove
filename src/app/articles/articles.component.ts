@@ -27,6 +27,7 @@ export class ArticlesComponent implements OnInit {
           initial: this.currentState.id === 0,
           courses: this.currentState.id === 1,
           articles: this.currentState.id === 2,
+          error: this.currentState.id === 3,
         }
       : {
           initial: true,

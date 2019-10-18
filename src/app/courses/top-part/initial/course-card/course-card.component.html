@@ -3,7 +3,7 @@
   <h3 class="header" [innerHTML]="card.name"></h3>
   <div class="about" [innerHTML]="card.about"></div>
   <div class="buttons">
-    <div class="choose">выбрать</div>
-    <div class="programm">программа курса</div>
+    <div class="choose" [ngStyle]="colorButton()" (click)="toggleRegistration(true)">выбрать</div>
+    <div class="programm" (click)="toggleToCourse()">программа курса</div>
   </div>
 </div>

@@ -2,7 +2,7 @@ import { CurrentArticle } from './../../../article.model';
 import { HttpClient } from '@angular/common/http';
 import { ArticlesService } from './../../../articles.service';
 import { StateService } from 'src/app/main/main.service';
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import { UserInfo } from 'src/app/courses/shared/course-card.model';
 import { DialogLoginComponent } from 'src/app/shared/dialog/login/dialog-login.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,6 +17,7 @@ export class NewCommentComponent implements OnInit {
   commentText = '';
   currentArticle: CurrentArticle;
   userLogined = false;
+  mobileResolution: boolean;
 
   constructor(
     private stateService: StateService,
@@ -33,23 +34,47 @@ export class NewCommentComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  @HostListener('window:resize') onResize() {
+    window.innerWidth < 768 ? this.mobileResolution = true : this.mobileResolution = false;
+  }
+
+  ngOnInit() {
+    this.onResize();
+  }
 
   checkComment() {
     return this.commentText.replace(/ /g, '').length === 0;
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogLoginComponent, {
-      width: '28.125vw',
-    });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (this.stateService.checkUser()) {
-        this.userLogined = true;
-        this.userInfo = this.stateService.getUserInfo();
-      }
-    });
+    if(this.mobileResolution) {
+      const dialogRef = this.dialog.open(DialogLoginComponent, {
+        width: '100vw',
+        maxWidth: '100vw',
+        height: 'auto',
+        minHeight: '358px',
+        position: {top: '0px'}
+      });
+
+      dialogRef.afterClosed().subscribe((result) => {
+        if (this.stateService.checkUser()) {
+          this.userLogined = true;
+          this.userInfo = this.stateService.getUserInfo();
+        }
+      });
+    } else {
+      const dialogRef = this.dialog.open(DialogLoginComponent, {
+        width: '28.125vw',
+      });
+
+      dialogRef.afterClosed().subscribe((result) => {
+        if (this.stateService.checkUser()) {
+          this.userLogined = true;
+          this.userInfo = this.stateService.getUserInfo();
+        }
+      });
+    }
   }
 
   sendComment() {

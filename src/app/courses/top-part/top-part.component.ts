@@ -13,6 +13,7 @@ export class TopPartComponent implements OnInit {
   currentState: State = new State({ id: 0, base: '' });
   bgClass: string;
   userLogined = false;
+  mobileResolution: boolean;
 
   constructor(private stateService: StateService) {
     this.currentState = stateService.getCurrentState();
@@ -30,6 +31,7 @@ export class TopPartComponent implements OnInit {
   @HostListener('window:resize')
   onResize() {
     this.bgClass = window.innerWidth / window.innerHeight > 16 / 9 ? 'wide' : 'narrow';
+    window.innerWidth < 768 ? this.mobileResolution = true : this.mobileResolution = false;
   }
 
   ngOnInit() {

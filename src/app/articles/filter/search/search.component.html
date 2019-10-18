@@ -1,4 +1,4 @@
-<div class="search-component-wrap z-index-comp">
+<div class="search-component-wrap z-index-comp" (window:resize)="onResize($event)">
   <div class="close-helper" (click)="toggleSearch(false)"></div>
   <div class="search-content-wrap slide-in-comp">
     <div class="inner-cont">
@@ -39,7 +39,7 @@
                 (removed)="toggleTag(tag)"
               >
                 {{ '#' + tag.text }}
-                <mat-icon class="mat-icon" matChipRemove *ngIf="tagSelected(tag)">cancel</mat-icon>
+                <mat-icon class="mat-icon" matChipRemove *ngIf="tagSelected(tag) && !defineMobile">cancel</mat-icon>
               </mat-chip>
             </mat-chip-list>
           </mat-tab>
@@ -49,7 +49,7 @@
     <div class="bottom-cont">
       <div class="items-found" [innerHTML]="getItemsFoundInnerHTML()"></div>
       <div class="right-btns">
-        <button mat-button color="basic" (click)="clearTags()">
+        <button mat-button color="basic" (click)="setNewIndex(0)">
           Очистить фильтр
         </button>
         <button mat-button color="primary" (click)="submitSelection()">

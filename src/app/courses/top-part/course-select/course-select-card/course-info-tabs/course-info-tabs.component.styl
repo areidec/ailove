@@ -1,0 +1,139 @@
+@import ('../../../../../../libs/css/params.styl');
+
+:host {
+  position: absolute;
+  height: 92.5%;
+  width: 100%;
+  bottom: 0;
+  overflow-y: scroll;
+
+  .tabs {
+    height: 100%;
+  }
+
+  >>>.mat-tab-body-wrapper {
+    height: 100%;
+  }
+
+  >>>.mat-tab-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 0.43px;
+    opacity: 1;
+    padding: 0;
+    width: 33.3333%;
+  }
+
+  .mat-tab-labels {
+    justify-content: space-between;
+  }
+
+  >>>.mat-tab-header {
+    border-bottom: none;
+  }
+
+  >>>.mat-primary .mat-ink-bar {
+    height: 3px;
+    background-color: #ffd144;
+  }
+
+  >>>.mat-tab-label-content {
+    padding: 0 15px;
+  }
+
+  >>>.mat-tab-body-content {
+    background: #fff;
+  }
+
+  .modules {
+    padding: 10px 0;
+    margin: 0;
+    list-style: none;
+    margin-left: 20px;
+    margin-right: 13px;
+    color: #202020;
+    font-size: 14px;
+
+    .module-wrap {
+      padding: 0;
+      margin: 0;
+      // display: flex;
+      // flex-direction: column;
+      transition: height 0.45s $OutCubic;
+      padding-bottom: 7px;
+      border-bottom: 1px solid #e7e7e7;
+      margin-bottom: 8px;
+      overflow: hidden;
+
+      .top {
+        display:flex;
+
+        .arrow {
+          width: 31px;
+
+          svg {
+            will-change: transform;
+            transition: transform 0.35s $OutCubic;
+            transform: rotate(180deg);
+            width: 12px;
+          }
+
+        }
+
+
+        .header {
+          width: calc( 100% - 89px);
+        }
+
+        .duration {
+          width: 58px;
+          color: #415061;
+          opacity: .3;
+          text-align: right;
+        }
+
+      }
+
+      .about {
+        margin-left: 31px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        color: #415061;
+        opacity: .4;
+      }
+
+      &.active {
+        .top {
+          .arrow {
+            svg {
+              will-change: transform;
+              transition: transform 0.35s $OutCubic;
+              transform: rotate(0deg);
+            }
+          }
+        }
+      }
+
+    }
+
+  }
+
+
+  .buttons {
+    margin-top: 20px;
+    text-align: center;
+
+    .start {
+      width: 210px;
+      height: 48px;
+      text-transform: uppercase;
+      font-weight: 700;
+      border-radius: 28.8px;
+      color: white;
+      margin-bottom: 28px;
+    }
+
+  }
+
+}

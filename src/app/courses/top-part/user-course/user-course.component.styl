@@ -147,7 +147,7 @@
               svg {
                 will-change: transform;
                 transition: transform 0.35s $OutCubic;
-                transform: rotate(180deg);
+                transform: rotate(0deg);
               }
             }
           }
@@ -179,6 +179,11 @@
             width: 75%;
           }
 
+          .count {
+            fzd(16);
+            font-weight: 400;
+          }
+
           .duration {
             fzd(16);
             font-weight: 400;
@@ -199,7 +204,7 @@
             svg {
               will-change: transform;
               transition: transform 0.35s $OutCubic;
-              transform: rotate(0deg);
+              transform: rotate(180deg);
               width: 30%;
             }
           }
@@ -327,4 +332,84 @@
       }
     }
   }
+
+  @media screen and (max-width: 768px) {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    .user-course-parent {
+      position: relative;
+      padding-top: 30px;
+
+      .confirm-email-wrap {
+        width: calc(100% - 40px);
+        margin-top: 20px;
+      }
+
+      .profile {
+        height: auto;
+
+        .portrait {
+          height: 116px;
+          width: 116px;
+
+          .inner-img {
+            width: calc(100% - 8px);
+            height: calc(100% - 8px);
+          }
+
+        }
+
+        .name {
+          font-size: 16px;
+          line-height: normal;
+          color: #415061;
+          margin-top: 12px;
+        }
+
+      }
+
+
+      .header {
+        display: none;
+      }
+
+      .modules {
+        display: none;
+      }
+
+      .bot-content {
+        display: none;
+      }
+
+      .buttons {
+        margin: 20px 0;
+
+        button {
+          width: 240px;
+          height: 48px;
+          border-radius: 28.8px;
+          background-color: #88ca60;
+          font-size: 13px;
+          line-height: normal;
+          letter-spacing: 0.93px;
+        }
+
+      }
+
+      .current-course {
+        font-size: 16px;
+        line-height: 1.38;
+        color: #415061;
+        width: calc(100% - 40px);
+        text-align: center;
+        margin-top: 17px;
+        opacity: 0.3;
+      }
+
+    }
+
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { StateService } from 'src/app/main/main.service';
 import { State } from 'src/app/main/state.model';
 import { fade, slideIn } from 'src/app/courses/shared/animations.service';
@@ -19,7 +19,9 @@ export class HeaderComponent implements OnInit {
   showRegistration = false;
   animal: string;
   name: string;
+  burgerState = false;
   private toggleRegistration: (nextVal: boolean) => void;
+  mobileResolution: boolean;
 
   constructor(
     private mainState: StateService,
@@ -48,22 +50,47 @@ export class HeaderComponent implements OnInit {
     this.toggleRegistration = (nextVal) => registrationState.toggleRegistration(nextVal);
   }
 
-  ngOnInit() {}
+  @HostListener('window:resize') onResize() {
+    window.innerWidth < 768 ? this.mobileResolution = true : this.mobileResolution = false;
+  }
+
+  ngOnInit() {
+    this.onResize();
+  }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogLoginComponent, {
-      width: '28.125vw',
-    });
+    if (this.mobileResolution) {
+      const dialogRef = this.dialog.open(DialogLoginComponent, {
+        width: '100vw',
+        maxWidth: '100vw',
+        height: 'auto',
+        minHeight: '358px',
+        position: {top: '0px'}
+      });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-    });
+      dialogRef.afterClosed().subscribe((result) => {
+        console.log('The dialog was closed');
+      });
+    } else {
+        const dialogRef = this.dialog.open(DialogLoginComponent, {
+          width: '28.125vw',
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+          console.log('The dialog was closed');
+        });
+    }
+
   }
 
   changeState(id: number): void {
     if (this.currentState.id !== id) {
       this.mainState.setActiveState(id);
     }
+  }
+
+  logoutUser() {
+    this.mainState.logoutUser();
   }
 
   defineCssState() {
@@ -77,4 +104,13 @@ export class HeaderComponent implements OnInit {
           initial: true,
         };
   }
+
+  private burgerToggleState() {
+    this.burgerState = !this.burgerState;
+  }
+
+  private isMobile(): string {
+    if (window.innerWidth < 768 && !this.userLogined) return 'short';
+  }
+
 }

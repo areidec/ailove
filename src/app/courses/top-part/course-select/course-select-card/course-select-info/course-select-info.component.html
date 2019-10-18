@@ -91,7 +91,16 @@
     </li>
   </ul>
   <div class="buttons">
-    <button mat-flat-button color="accent" class="start">
+    <button mat-flat-button color="accent" class="start"
+      (click)="toggleRegistration(true)"
+      *ngIf="!userLogined"
+    >
+      начать обучение
+    </button>
+    <button mat-flat-button color="accent" class="start"
+      (click)="courseDisable()"
+      *ngIf="userLogined"
+    >
       начать обучение
     </button>
     <div class="hide" (click)="removeActive()">свернуть</div>

@@ -27,6 +27,8 @@ $tag-selected = #A0CEE9;
     opacity: 0;
     transition: width 0s ease-in-out 0.1s, opacity 0.1s ease-in;
     background: transparent;
+    position: absolute;
+    right: -100%;
   }
 
   &.articles {
@@ -38,10 +40,10 @@ $tag-selected = #A0CEE9;
   &:after {
     content: '';
     height: 6.45vw;
-    width: 3.5vw;
+    width: 4vw;
     position: absolute;
     top: 1.77vw;
-    right: calc(6.45vw + 4.6875vw + 2px);
+    right: calc(6.45vw + 4.6875vw);
     background: linear-gradient(to left, #F8F8F8, rgba(248, 248, 248, 0));
   }
 
@@ -155,4 +157,100 @@ $tag-selected = #A0CEE9;
       fzd(16);
     }
   }
+
+  @media screen and (max-width: 768px) {
+    position: relative;
+    top: 0;
+    padding: 0;
+    //flex-wrap: nowrap;
+
+    &.articles {
+      width: 100vw;
+      opacity: 1;
+      transition: width 0s ease-in-out, opacity 0.2s ease-out 0.35s;
+    }
+
+    .search-tags-wrap {
+      position: relative;
+      margin: 20px 0 20px 20px;
+      width: calc(100% - 40px);
+
+      .tab-content {
+        width: 100%;
+        display:flex;
+        padding: 0;
+        >>>.mat-chip-list-wrapper {
+          flex-wrap: wrap;
+          margin: 0;
+          justify-content: space-between;
+          width: 100%;
+        }
+
+        .tag {
+          margin: 0;
+          margin-bottom: 10px;
+          padding: 8px 8px 10px 16px;
+          font-size: 14px;
+          letter-spacing: 0.17px;
+        }
+
+      }
+
+
+      button {
+        display: none;
+      }
+
+    }
+
+    &:after {
+      display: none;
+    }
+
+    .search-btn {
+      order: -1;
+      border: none;
+      padding: 0;
+      width: 60px;
+      height: 45px;
+      border-right: 1px solid #cccccc;
+      border-bottom: 1px solid #cccccc;
+
+      .search-icon {
+        font-size: 23px;
+      }
+
+    }
+
+    .filters-list {
+      border-bottom: none;
+      //padding-left: 40px;
+      width: calc(100% - 64px);
+      //width: 100%;
+      border-bottom: 1px solid #cccccc;
+
+      .filter-item {
+        font-size: 17px;
+        padding: 0;
+        margin-right: 20px;
+        line-height: 45px;
+
+        &:first-child {
+          padding-left: 40px;
+        }
+
+        &:last-child {
+          padding-right: 20px;
+        }
+
+      }
+
+    }
+
+    &.initial {
+      width: 100vw;
+    }
+
+  }
+
 }
